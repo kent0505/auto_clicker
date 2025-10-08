@@ -10,6 +10,7 @@ enum FieldType {
   number,
   decimal,
   phone,
+  url,
 }
 
 class Field extends StatelessWidget {
@@ -46,6 +47,7 @@ class Field extends StatelessWidget {
         FieldType.decimal =>
           const TextInputType.numberWithOptions(decimal: true),
         FieldType.phone => TextInputType.phone,
+        FieldType.url => TextInputType.url,
       },
       obscureText: fieldType == FieldType.password,
       readOnly: readOnly,
@@ -63,14 +65,10 @@ class Field extends StatelessWidget {
       maxLines: fieldType == FieldType.multiline ? null : 1,
       style: const TextStyle(
         color: AppColors.text,
-        fontSize: 14,
-        fontFamily: AppFonts.w500,
+        fontSize: 16,
+        fontFamily: AppFonts.w600,
       ),
-      decoration: InputDecoration(
-        hintText: hintText,
-        // errorText: 'Aaa',
-        // errorBorder: InputBorder.none,
-      ),
+      decoration: InputDecoration(hintText: hintText),
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
       },

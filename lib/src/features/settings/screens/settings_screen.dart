@@ -16,6 +16,8 @@ class SettingsScreen extends StatelessWidget {
         final url = Uri.parse(uri);
         if (await canLaunchUrl(url)) {
           await launchUrl(url);
+        } else {
+          throw Exception();
         }
       } catch (e) {
         logger(e);

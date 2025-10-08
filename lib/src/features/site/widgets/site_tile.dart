@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/button.dart';
-import '../../clicker/screens/clicker_screen.dart';
-import '../models/site.dart';
+import '../../site/screens/site_screen.dart';
+import '../../site/models/site.dart';
 
-class HomeTile extends StatelessWidget {
-  const HomeTile({super.key, required this.site});
+class SiteTile extends StatelessWidget {
+  const SiteTile({super.key, required this.site});
 
   final Site site;
 
@@ -27,8 +27,8 @@ class HomeTile extends StatelessWidget {
       child: Button(
         onPressed: () {
           context.push(
-            ClickerScreen.routePath,
-            extra: site.url,
+            SiteScreen.routePath,
+            extra: site,
           );
         },
         child: Column(

@@ -27,6 +27,7 @@ final theme = ThemeData(
   // DIALOG
   dialogTheme: const DialogThemeData(
     insetPadding: EdgeInsets.zero,
+    backgroundColor: AppColors.tile,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(Constants.radius)),
     ),
@@ -51,10 +52,10 @@ final theme = ThemeData(
       borderRadius: BorderRadius.circular(Constants.radius),
       borderSide: const BorderSide(color: Colors.transparent),
     ),
-    hintStyle: const TextStyle(
-      color: AppColors.tile,
-      fontSize: 14,
-      fontFamily: AppFonts.w400,
+    hintStyle: TextStyle(
+      color: AppColors.text2,
+      fontSize: 16,
+      fontFamily: AppFonts.w500,
     ),
   ),
   extensions: [_ligthColors],

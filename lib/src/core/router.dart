@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 
-import '../features/clicker/screens/clicker_screen.dart';
+import '../features/site/screens/add_site_screen.dart';
+import '../features/site/screens/site_screen.dart';
+import '../features/site/models/site.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/onboard/screens/onboard_screen.dart';
 import '../features/splash/screens/splash_screen.dart';
@@ -20,11 +22,17 @@ final routerConfig = GoRouter(
       path: HomeScreen.routePath,
       builder: (context, state) => const HomeScreen(),
     ),
+
+    // site
     GoRoute(
-      path: ClickerScreen.routePath,
-      builder: (context, state) => ClickerScreen(
-        url: state.extra as String,
+      path: SiteScreen.routePath,
+      builder: (context, state) => SiteScreen(
+        site: state.extra as Site,
       ),
+    ),
+    GoRoute(
+      path: AddSiteScreen.routePath,
+      builder: (context, state) => const AddSiteScreen(),
     ),
   ],
 );

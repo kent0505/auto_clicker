@@ -13,15 +13,14 @@ class NavBar extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height:
-            Constants.navBarHeight + MediaQuery.of(context).viewPadding.bottom,
+        height: Constants.navBarHeight,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         margin: const EdgeInsets.symmetric(
           horizontal: Constants.padding,
         ).copyWith(bottom: Constants.padding),
         decoration: BoxDecoration(
           color: AppColors.tile,
-          borderRadius: BorderRadius.circular(Constants.radius),
+          borderRadius: BorderRadius.circular(Constants.radius * 2),
         ),
         child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
@@ -83,7 +82,7 @@ class _NavBarButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: active ? AppColors.accent : null,
+              color: active ? AppColors.accent : AppColors.text,
               size: 30,
             ),
             const SizedBox(height: 4),

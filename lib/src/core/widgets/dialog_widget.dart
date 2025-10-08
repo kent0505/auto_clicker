@@ -54,7 +54,7 @@ class DialogWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: AppColors.text,
-                  fontSize: 16,
+                  fontSize: 18,
                   fontFamily: AppFonts.w600,
                 ),
               ),

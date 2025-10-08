@@ -32,7 +32,7 @@ class MainButton extends StatelessWidget {
       width: width,
       margin: EdgeInsets.symmetric(horizontal: horizontal),
       decoration: BoxDecoration(
-        color: color ?? (active ? AppColors.accent : AppColors.error),
+        color: color ?? (active ? AppColors.accent : AppColors.tile),
         borderRadius: BorderRadius.circular(Constants.radius),
       ),
       child: Button(
@@ -44,8 +44,8 @@ class MainButton extends StatelessWidget {
                 ? const LoadingWidget()
                 : Text(
                     title,
-                    style: const TextStyle(
-                      color: AppColors.text,
+                    style: TextStyle(
+                      color: active ? AppColors.text : AppColors.text2,
                       fontSize: 16,
                       fontFamily: AppFonts.w700,
                     ),

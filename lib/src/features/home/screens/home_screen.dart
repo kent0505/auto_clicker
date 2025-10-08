@@ -5,10 +5,10 @@ import '../../../core/utils.dart';
 import '../../../core/constants.dart';
 import '../../guide/screens/instruction_screen.dart';
 import '../../settings/screens/settings_screen.dart';
+import '../../site/screens/sites_screen.dart';
 import '../widgets/home_appbar.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/nav_bar.dart';
-import 'initial_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                     HomeSettings() => 2,
                   },
                   children: const [
-                    InitialScreen(),
+                    SitesScreen(),
                     InstructionScreen(),
                     SettingsScreen(),
                   ],

@@ -8,6 +8,7 @@ abstract final class AppColors {
   static const Color bg = Color(0xff37353E);
   static const Color tile = Color(0xff44444E);
   static const Color text = Color(0xffD3DAD9);
+  static Color text2 = const Color(0xffD3DAD9).withValues(alpha: 0.4);
 }
 
 abstract final class AppFonts {

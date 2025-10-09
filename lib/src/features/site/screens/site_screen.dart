@@ -1,4 +1,3 @@
-import 'package:auto_clicker/src/features/site/widgets/clicker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,8 +8,11 @@ import '../../../core/utils.dart';
 import '../../../core/widgets/appbar.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/dialog_widget.dart';
+import '../../clicker/bloc/clicker_bloc.dart';
 import '../bloc/site_bloc.dart';
 import '../models/site.dart';
+import '../../clicker/widgets/clicker_widget.dart';
+import '../../clicker/widgets/control_panel.dart';
 
 class SiteScreen extends StatefulWidget {
   const SiteScreen({super.key, required this.site});
@@ -24,13 +26,26 @@ class SiteScreen extends StatefulWidget {
 }
 
 class _SiteScreenState extends State<SiteScreen> {
-  WebViewController? controller;
-  late final Site site;
+  late final WebViewController controller;
 
-  double x = 100;
-  double y = 200;
+  bool invalid = false;
 
   void onStart() async {
+    // await controller?.runJavaScript(
+    //   'window.scrollBy({ top: -200, behavior: "smooth" });',
+    // );
+
+    // await controller?.runJavaScript(
+    //   'window.scrollBy({ left: 200, behavior: "smooth" });',
+    // );
+
+    // await controller?.runJavaScript(
+    //   'window.scrollBy({ left: -200, behavior: "smooth" });',
+    // );
+    final state = context.read<ClickerBloc>().state;
+    final x = state.x;
+    final y = state.y;
+
     final js = """
       (function() {
         const el = document.elementFromPoint($x, $y);
@@ -45,7 +60,7 @@ class _SiteScreenState extends State<SiteScreen> {
       })();
     """;
 
-    await controller?.runJavaScript(js);
+    await controller.runJavaScript(js);
   }
 
   void onDelete() {
@@ -54,7 +69,7 @@ class _SiteScreenState extends State<SiteScreen> {
       confirm: true,
       title: 'Delete site?',
       onPressed: () {
-        context.read<SiteBloc>().add(DeleteSite(site: site));
+        context.read<SiteBloc>().add(DeleteSite(site: widget.site));
         context.pop();
         context.pop();
       },
@@ -64,25 +79,25 @@ class _SiteScreenState extends State<SiteScreen> {
   @override
   void initState() {
     super.initState();
-    site = widget.site;
-    logger(site.logo);
     try {
       controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..loadRequest(Uri.parse(site.url));
+        ..enableZoom(true)
+        ..loadRequest(Uri.parse(widget.site.url));
     } catch (e) {
+      setState(() {
+        invalid = true;
+      });
       logger(e);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: Appbar(
-        title: site.title,
-        right: site.isMy
+        title: widget.site.title,
+        right: widget.site.isMy
             ? Button(
                 onPressed: onDelete,
                 child: const Icon(
@@ -93,7 +108,7 @@ class _SiteScreenState extends State<SiteScreen> {
               )
             : null,
       ),
-      body: controller == null
+      body: invalid
           ? const Center(
               child: Text(
                 'Invalid url',
@@ -111,52 +126,17 @@ class _SiteScreenState extends State<SiteScreen> {
                     fit: StackFit.expand,
                     children: [
                       Positioned(
-                        right: -0.5,
+                        right: -0.5, // чтобы убрать белую линию по краю
                         bottom: 0,
                         top: 0,
                         left: 0,
-                        child: WebViewWidget(controller: controller!),
+                        child: WebViewWidget(controller: controller),
                       ),
-
-                      //
-                      Positioned(
-                        left: x,
-                        top: y,
-                        child: ClickerWidget(
-                          onPanUpdate: (details) {
-                            setState(() {
-                              x += details.delta.dx;
-                              y += details.delta.dy;
-
-                              x = x.clamp(0, size.width - 60);
-                              y = y.clamp(0, size.height - 60);
-                            });
-                          },
-                        ),
-                      ),
+                      const ClickerWidget(),
                     ],
                   ),
                 ),
-                Container(
-                  height: 60,
-                  color: AppColors.bg,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Button(
-                        onPressed: onStart,
-                        child: const Text(
-                          'Start',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: AppFonts.w700,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ControlPanel(onStart: onStart),
               ],
             ),
     );

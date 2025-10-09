@@ -1,3 +1,4 @@
+import 'package:auto_clicker/src/core/widgets/snack.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -73,7 +74,15 @@ class _AddSiteScreenState extends State<AddSiteScreen> {
             const Spacer(),
             BlocConsumer<SiteBloc, SiteState>(
               listener: (context, state) {
-                if (state is SitesLoaded) {
+                if (state is SiteError) {
+                  Snack.show(
+                    context,
+                    isError: true,
+                    message: state.error,
+                  );
+                }
+
+                if (state is SiteAdded) {
                   context.pop();
                 }
               },

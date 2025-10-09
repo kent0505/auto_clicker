@@ -10,3 +10,11 @@ final class SitesLoaded extends SiteState {
 
   final List<Site> sites;
 }
+
+final class SiteError extends SiteState {
+  SiteError({required this.error});
+
+  final String error;
+}
+
+final class SiteAdded extends SiteState {}

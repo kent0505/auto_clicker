@@ -45,8 +45,14 @@ class SiteBloc extends Bloc<SiteEvent, SiteState> {
     emit(SitesLoading());
     try {
       final site = event.site;
-      site.logo = await _repository.getLogo(site.url);
-      await _repository.addSite(site);
+      final uri = Uri.parse(site.url);
+      if (uri.hasScheme && uri.hasAuthority) {
+        site.logo = await _repository.getLogo(site.url);
+        await _repository.addSite(site);
+        emit(SiteAdded());
+      } else {
+        emit(SiteError(error: 'Invalid URL'));
+      }
       add(GetSites());
     } catch (e) {
       logger(e);
@@ -57,7 +63,6 @@ class SiteBloc extends Bloc<SiteEvent, SiteState> {
     EditSite event,
     Emitter<SiteState> emit,
   ) async {
-    emit(SitesLoading());
     try {
       final site = event.site;
       site.logo = await _repository.getLogo(site.url);

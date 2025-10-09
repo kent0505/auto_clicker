@@ -1,7 +1,7 @@
-import 'package:auto_clicker/src/core/utils.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:favicon/favicon.dart';
 
+import '../../../core/utils.dart';
 import '../models/site.dart';
 
 abstract interface class SiteRepository {

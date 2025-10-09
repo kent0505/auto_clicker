@@ -91,8 +91,8 @@ class _NavBarButton extends StatelessWidget {
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: AppColors.text,
+              style: TextStyle(
+                color: active ? AppColors.accent : AppColors.text,
                 fontSize: 12,
                 fontFamily: AppFonts.w500,
                 height: 1,

@@ -15,7 +15,10 @@ class SettingsScreen extends StatelessWidget {
       try {
         final url = Uri.parse(uri);
         if (await canLaunchUrl(url)) {
-          await launchUrl(url);
+          await launchUrl(
+            url,
+            mode: LaunchMode.externalApplication,
+          );
         } else {
           throw Exception();
         }
@@ -48,13 +51,13 @@ class SettingsScreen extends StatelessWidget {
         SettingsTile(
           title: 'Terms of Use',
           onPressed: () async {
-            await launchURL('https://instagram.com');
+            await launchURL('https://instagram.com/');
           },
         ),
         SettingsTile(
           title: 'Support',
           onPressed: () async {
-            await launchURL('https://instagram.com');
+            await launchURL('https://instagram.com/');
           },
         ),
       ],

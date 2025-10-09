@@ -80,15 +80,22 @@ class _SiteScreenState extends State<SiteScreen> {
   void initState() {
     super.initState();
     try {
+      context.read<SiteBloc>().add(EditSite(site: widget.site));
       controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..enableZoom(true)
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onNavigationRequest: (NavigationRequest request) {
+              return NavigationDecision.prevent;
+            },
+          ),
+        )
         ..loadRequest(Uri.parse(widget.site.url));
     } catch (e) {
+      logger(e);
       setState(() {
         invalid = true;
       });
-      logger(e);
     }
   }
 

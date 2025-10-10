@@ -16,8 +16,7 @@ import 'src/features/onboard/data/onboard_repository.dart';
 import 'src/features/site/models/site.dart';
 import 'src/features/vip/bloc/vip_bloc.dart';
 
-// adb tcpip 5555
-// adb connect 192.168.0.190
+// adb tcpip 5555 && adb connect 192.168.0.190
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

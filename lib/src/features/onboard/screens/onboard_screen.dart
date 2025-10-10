@@ -69,7 +69,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
           ),
           Container(
             height: 260,
-            color: Colors.redAccent,
+            color: AppColors.tile,
             child: Column(
               children: [
                 const SizedBox(height: 10),
@@ -82,7 +82,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       dotWidth: 8,
                       spacing: 10,
                       scale: 1.5,
-                      dotColor: Color(0xffD9D9D9),
+                      dotColor: AppColors.text,
                       activeDotColor: AppColors.accent,
                     ),
                   ),
@@ -90,15 +90,31 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 const SizedBox(height: 10),
                 Text(
                   switch (index) {
-                    0 => '1',
-                    1 => '2',
-                    2 => '3',
+                    0 => 'Best auto-clicker',
+                    1 => 'Easy tap tool',
+                    2 => 'Set up your multiclick',
                     _ => '',
                   },
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: AppColors.text,
                     fontSize: 20,
                     fontFamily: AppFonts.w600,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  switch (index) {
+                    0 => 'Auto-clicker for Roblox and more',
+                    1 => 'Quick precise taps - for any game or task',
+                    2 => 'Multi-click makes gaming even easier',
+                    _ => '',
+                  },
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: AppColors.text,
+                    fontSize: 16,
+                    fontFamily: AppFonts.w500,
                   ),
                 ),
                 const Spacer(),
@@ -107,7 +123,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   horizontal: Constants.padding,
                   onPressed: onContinue,
                 ),
-                const SizedBox(height: Constants.padding),
+                const SizedBox(height: Constants.padding * 2),
               ],
             ),
           ),

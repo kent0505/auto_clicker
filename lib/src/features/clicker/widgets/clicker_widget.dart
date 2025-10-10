@@ -11,7 +11,8 @@ class ClickerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ClickerBloc, Clicker>(
       builder: (context, state) {
-        return Positioned(
+        return AnimatedPositioned(
+          duration: const Duration(milliseconds: 400),
           left: state.x,
           top: state.y,
           child: GestureDetector(

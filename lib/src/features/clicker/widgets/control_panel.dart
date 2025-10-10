@@ -16,18 +16,41 @@ class ControlPanel extends StatelessWidget {
       height: 60,
       color: AppColors.bg,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Button(
             onPressed: () {
               context.read<ClickerBloc>().add(ChangeClickerPosition(100, 200));
+              // showModalBottomSheet(
+              //   context: context,
+              //   builder: (context) {
+              //     return Container();
+              //   },
+              // );
             },
-            child: const Icon(
-              Icons.restart_alt_rounded,
-              color: AppColors.text,
-              size: 30,
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                'Reset',
+                style: TextStyle(
+                  color: AppColors.text,
+                  fontSize: 20,
+                  fontFamily: AppFonts.w700,
+                ),
+              ),
             ),
           ),
-          const Spacer(),
+          // Button(
+          //   onPressed: () {
+          //     context.read<ClickerBloc>().add(ChangeClickerPosition(100, 200));
+          //   },
+          //   child: const Icon(
+          //     Icons.restart_alt_rounded,
+          //     color: AppColors.text,
+          //     size: 30,
+          //   ),
+          // ),
+          // const Spacer(),
           Button(
             onPressed: onStart,
             child: const Padding(

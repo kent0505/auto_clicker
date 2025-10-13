@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../core/constants.dart';
@@ -115,6 +116,49 @@ class _SiteScreenState extends State<SiteScreen> {
     try {
       controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onNavigationRequest: (NavigationRequest request) async {
+              final url = request.url;
+
+              if (url.startsWith('intent://applink.instagram.com')) {
+                await launchUrl(
+                  Uri.parse('https://instagram.com'),
+                  mode: LaunchMode.externalApplication,
+                );
+                return NavigationDecision.prevent;
+              } else if (url
+                  .startsWith('intent://www_link?url=www.facebook.com')) {
+                await launchUrl(
+                  Uri.parse('https://facebook.com'),
+                  mode: LaunchMode.externalApplication,
+                );
+                return NavigationDecision.prevent;
+              }
+
+              if (url.startsWith('tg://') ||
+                  url.startsWith('whatsapp://') ||
+                  url.startsWith('mailto:') ||
+                  url.startsWith('tel:')) {
+                try {
+                  await launchUrl(
+                    Uri.parse(url),
+                    mode: LaunchMode.externalApplication,
+                  );
+                } catch (e) {
+                  logger('Error opening $url: $e');
+                }
+                return NavigationDecision.prevent;
+              }
+
+              if (url.startsWith('http') || url.startsWith('https')) {
+                return NavigationDecision.navigate;
+              }
+
+              return NavigationDecision.prevent;
+            },
+          ),
+        )
         ..loadRequest(Uri.parse(widget.site.url));
     } catch (e) {
       logger(e);

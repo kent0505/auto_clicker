@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../constants.dart';
 import '../utils.dart';
 import 'button.dart';
-import 'svg_widget.dart';
+import 'icon_widget.dart';
 
 class Appbar extends StatelessWidget implements PreferredSizeWidget {
   const Appbar({
@@ -44,11 +44,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                     logger(e);
                   }
                 },
-                child: const SvgWidget(
-                  Assets.back,
-                  height: 24,
-                  color: AppColors.text,
-                ),
+                child: const IconWidget(Icons.arrow_back_ios_rounded),
               ),
               Expanded(
                 child: Center(

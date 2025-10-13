@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/button.dart';
 import '../../../core/constants.dart';
+import '../../../core/widgets/icon_widget.dart';
 import '../bloc/home_bloc.dart';
 
 class NavBar extends StatelessWidget {
@@ -80,10 +81,9 @@ class _NavBarButton extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            IconWidget(
               icon,
               color: active ? AppColors.accent : AppColors.text,
-              size: 30,
             ),
             const SizedBox(height: 4),
             Text(

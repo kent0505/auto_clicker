@@ -33,6 +33,10 @@ final theme = ThemeData(
     ),
   ),
 
+  bottomSheetTheme: const BottomSheetThemeData(
+    backgroundColor: AppColors.bg,
+  ),
+
   // TEXTFIELD
   inputDecorationTheme: InputDecorationTheme(
     filled: true,

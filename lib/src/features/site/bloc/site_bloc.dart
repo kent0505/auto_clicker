@@ -18,7 +18,6 @@ class SiteBloc extends Bloc<SiteEvent, SiteState> {
       (event, emit) => switch (event) {
         GetSites() => _getSites(event, emit),
         AddSite() => _addSite(event, emit),
-        EditSite() => _editSite(event, emit),
         DeleteSite() => _deleteSite(event, emit),
       },
     );
@@ -53,20 +52,6 @@ class SiteBloc extends Bloc<SiteEvent, SiteState> {
       } else {
         emit(SiteError(error: 'Invalid URL'));
       }
-      add(GetSites());
-    } catch (e) {
-      logger(e);
-    }
-  }
-
-  void _editSite(
-    EditSite event,
-    Emitter<SiteState> emit,
-  ) async {
-    try {
-      final site = event.site;
-      site.logo = await _repository.getLogo(site.url);
-      await _repository.editSite(site);
       add(GetSites());
     } catch (e) {
       logger(e);

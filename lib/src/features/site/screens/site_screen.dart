@@ -8,11 +8,14 @@ import '../../../core/utils.dart';
 import '../../../core/widgets/appbar.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/dialog_widget.dart';
+import '../../../core/widgets/icon_widget.dart';
 import '../../clicker/bloc/clicker_bloc.dart';
 import '../bloc/site_bloc.dart';
+import '../../clicker/models/click.dart';
 import '../models/site.dart';
-import '../../clicker/widgets/clicker_widget.dart';
-import '../../clicker/widgets/control_panel.dart';
+import '../widgets/click_widget.dart';
+import '../widgets/control_panel.dart';
+import '../widgets/web_widget.dart';
 
 class SiteScreen extends StatefulWidget {
   const SiteScreen({super.key, required this.site});
@@ -29,23 +32,11 @@ class _SiteScreenState extends State<SiteScreen> {
   late final WebViewController controller;
 
   bool invalid = false;
+  bool started = false;
 
-  void onStart() async {
-    // await controller?.runJavaScript(
-    //   'window.scrollBy({ top: -200, behavior: "smooth" });',
-    // );
-
-    // await controller?.runJavaScript(
-    //   'window.scrollBy({ left: 200, behavior: "smooth" });',
-    // );
-
-    // await controller?.runJavaScript(
-    //   'window.scrollBy({ left: -200, behavior: "smooth" });',
-    // );
-    final state = context.read<ClickerBloc>().state;
-    final x = state.x;
-    final y = state.y;
-
+  Future<void> runJS(Click click) async {
+    final x = click.x + 10;
+    final y = click.y + 10;
     final js = """
       (function() {
         const el = document.elementFromPoint($x, $y);
@@ -59,8 +50,50 @@ class _SiteScreenState extends State<SiteScreen> {
         }
       })();
     """;
-
     await controller.runJavaScript(js);
+  }
+
+  void onStart() async {
+    logger('START');
+    final bloc = context.read<ClickerBloc>();
+
+    final milliseconds = bloc.state.interval;
+    final doubleClick = bloc.state.doubleClick;
+    int repeat = bloc.state.repeat;
+    started = true;
+
+    do {
+      for (final click in bloc.state.clicks) {
+        if (!started) break;
+
+        setState(() {
+          click.clicked = true;
+        });
+        await runJS(click);
+        await Future.delayed(const Duration(milliseconds: 200));
+        if (doubleClick) await runJS(click);
+        setState(() {
+          click.clicked = false;
+        });
+
+        await Future.delayed(Duration(milliseconds: milliseconds - 200));
+      }
+
+      repeat--;
+    } while (mounted && started && repeat > 0);
+
+    if (mounted) {
+      setState(() {
+        started = false;
+        logger('FINISH');
+      });
+    }
+  }
+
+  void onStop() {
+    setState(() {
+      started = false;
+    });
   }
 
   void onDelete() {
@@ -80,7 +113,6 @@ class _SiteScreenState extends State<SiteScreen> {
   void initState() {
     super.initState();
     try {
-      context.read<SiteBloc>().add(EditSite(site: widget.site));
       controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
         ..loadRequest(Uri.parse(widget.site.url));
@@ -94,51 +126,67 @@ class _SiteScreenState extends State<SiteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: Appbar(
-        title: widget.site.title,
-        right: widget.site.isMy
-            ? Button(
-                onPressed: onDelete,
-                child: const Icon(
-                  Icons.delete,
-                  size: 30,
-                  color: AppColors.text,
-                ),
-              )
-            : null,
-      ),
-      body: invalid
-          ? const Center(
-              child: Text(
-                'Invalid url',
-                style: TextStyle(
-                  color: AppColors.text,
-                  fontSize: 16,
-                  fontFamily: AppFonts.w500,
-                ),
-              ),
-            )
-          : Column(
-              children: [
-                Expanded(
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Positioned(
-                        right: -0.5, // чтобы убрать белую линию по краю
-                        bottom: 0,
-                        top: 0,
-                        left: 0,
-                        child: WebViewWidget(controller: controller),
-                      ),
-                      const ClickerWidget(),
-                    ],
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) {
+        onStop();
+      },
+      child: Scaffold(
+        appBar: Appbar(
+          title: widget.site.title,
+          right: widget.site.isMy
+              ? Button(
+                  onPressed: onDelete,
+                  child: const IconWidget(Icons.delete),
+                )
+              : null,
+        ),
+        body: invalid
+            ? const Center(
+                child: Text(
+                  'Invalid url',
+                  style: TextStyle(
+                    color: AppColors.text,
+                    fontSize: 16,
+                    fontFamily: AppFonts.w500,
                   ),
                 ),
-                ControlPanel(onStart: onStart),
-              ],
-            ),
+              )
+            : Stack(
+                children: [
+                  WebWidget(controller: controller),
+                  BlocBuilder<ClickerBloc, ClickerState>(
+                    builder: (context, state) {
+                      return Stack(
+                        children: List.generate(
+                          state.clicks.length,
+                          (index) {
+                            return ClickWidget(index: index);
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                  ControlPanel(
+                    started: started,
+                    controller: controller,
+                    onStart: onStart,
+                    onStop: onStop,
+                  ),
+                ],
+              ),
+      ),
     );
   }
 }
+
+// await controller?.runJavaScript(
+    //   'window.scrollBy({ top: -200, behavior: "smooth" });',
+    // );
+
+    // await controller?.runJavaScript(
+    //   'window.scrollBy({ left: 200, behavior: "smooth" });',
+    // );
+
+    // await controller?.runJavaScript(
+    //   'window.scrollBy({ left: -200, behavior: "smooth" });',
+    // );

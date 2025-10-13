@@ -11,12 +11,6 @@ final class AddSite extends SiteEvent {
   final Site site;
 }
 
-final class EditSite extends SiteEvent {
-  EditSite({required this.site});
-
-  final Site site;
-}
-
 final class DeleteSite extends SiteEvent {
   DeleteSite({required this.site});
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/widgets/button.dart';
+import '../../../core/widgets/icon_widget.dart';
 import '../../vip/bloc/vip_bloc.dart';
 
 class SettingsTile extends StatelessWidget {
@@ -22,9 +23,7 @@ class SettingsTile extends StatelessWidget {
     return Container(
       height: 60,
       margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.symmetric(
-        horizontal: Constants.padding,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: Constants.padding),
       decoration: BoxDecoration(
         color: AppColors.tile,
         borderRadius: BorderRadius.circular(Constants.radius),
@@ -55,10 +54,7 @@ class SettingsTile extends StatelessWidget {
                       );
                     },
                   )
-                : const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Colors.white,
-                  ),
+                : const IconWidget(Icons.chevron_right_rounded),
           ],
         ),
       ),

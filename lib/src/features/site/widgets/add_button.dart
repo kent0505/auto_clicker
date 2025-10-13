@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/widgets/button.dart';
-import '../../../core/widgets/svg_widget.dart';
+import '../../../core/widgets/icon_widget.dart';
 import '../screens/add_site_screen.dart';
 
 class AddButton extends StatelessWidget {
@@ -24,10 +24,7 @@ class AddButton extends StatelessWidget {
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgWidget(
-              Assets.add,
-              color: AppColors.text,
-            ),
+            IconWidget(Icons.add_rounded),
             SizedBox(width: 10),
             Text(
               'Add site',

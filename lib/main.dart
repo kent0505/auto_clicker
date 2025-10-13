@@ -7,7 +7,6 @@ import 'package:path/path.dart';
 
 import 'src/core/router.dart';
 import 'src/core/themes.dart';
-import 'src/core/utils.dart';
 import 'src/features/clicker/bloc/clicker_bloc.dart';
 import 'src/features/site/bloc/site_bloc.dart';
 import 'src/features/site/data/site_repository.dart';
@@ -30,7 +29,7 @@ void main() async {
   // );
 
   final prefs = await SharedPreferences.getInstance();
-  // await prefs.clear();
+  await prefs.clear();
 
   final path = join(await getDatabasesPath(), 'data.db');
   // await deleteDatabase(path);
@@ -39,7 +38,6 @@ void main() async {
     path,
     version: 1,
     onCreate: (db, version) async {
-      logger('CREATE TABLES');
       await db.execute(Site.create);
     },
   );

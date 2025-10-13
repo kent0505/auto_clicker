@@ -23,9 +23,9 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
           const SizedBox(width: Constants.padding),
           Text(
             switch (state) {
-              HomeInitial() => 'Autoclicker',
-              HomeGuides() => 'Guides',
-              HomeSettings() => 'Settings',
+              1 => 'Guides',
+              2 => 'Settings',
+              _ => 'Autoclicker',
             },
             style: const TextStyle(
               color: AppColors.text,

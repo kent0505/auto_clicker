@@ -110,6 +110,26 @@ class _SiteScreenState extends State<SiteScreen> {
     );
   }
 
+  void onSave() async {
+    final url = await controller.currentUrl() ?? '';
+    url.replaceAll('https://', '');
+
+    if (mounted) {
+      DialogWidget.show(
+        context,
+        title: 'Save url $url?',
+        confirm: true,
+        onPressed: () {
+          final site = Site(
+            title: url,
+            url: url,
+          );
+          context.read<SiteBloc>().add(AddSite(site: site));
+        },
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -204,7 +224,10 @@ class _SiteScreenState extends State<SiteScreen> {
                         children: List.generate(
                           state.clicks.length,
                           (index) {
-                            return ClickWidget(index: index);
+                            return ClickWidget(
+                              index: index,
+                              click: state.clicks[index],
+                            );
                           },
                         ),
                       );

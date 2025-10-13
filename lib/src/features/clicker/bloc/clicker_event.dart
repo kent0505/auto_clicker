@@ -3,12 +3,6 @@ part of 'clicker_bloc.dart';
 @immutable
 sealed class ClickerEvent {}
 
-final class ChangeSettings extends ClickerEvent {
-  ChangeSettings({required this.settings});
-
-  final ClickerState settings;
-}
-
 final class ChangeInterval extends ClickerEvent {
   ChangeInterval({required this.interval});
 
@@ -20,6 +14,10 @@ final class ChangeRepeat extends ClickerEvent {
 
   final int repeat;
 }
+
+final class ChangeDoubleClick extends ClickerEvent {}
+
+final class ChangeSwipeMode extends ClickerEvent {}
 
 final class ResetClicks extends ClickerEvent {}
 
@@ -36,5 +34,3 @@ final class MoveClick extends ClickerEvent {
 
   final Click click;
 }
-
-final class ChangeDoubleClick extends ClickerEvent {}

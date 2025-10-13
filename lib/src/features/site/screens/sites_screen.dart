@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants.dart';
+import '../../../core/widgets/loading_widget.dart';
 import '../../site/bloc/site_bloc.dart';
 import '../../site/models/site.dart';
-import '../widgets/add_button.dart';
+import '../../../core/widgets/add_button.dart';
 import '../widgets/site_tile.dart';
+import 'add_site_screen.dart';
 
 class SitesScreen extends StatelessWidget {
   const SitesScreen({super.key});
@@ -15,23 +18,44 @@ class SitesScreen extends StatelessWidget {
     List<Site> defaultSites = [
       Site(
         title: 'YouTube',
-        url: 'https://www.youtube.com',
-        logo: '',
+        url: 'https://www.youtube.com/',
         asset: Assets.logo1,
         isMy: false,
       ),
       Site(
         title: 'Instagram',
-        url: 'https://www.instagram.com',
-        logo: '',
+        url: 'https://www.instagram.com/',
         asset: Assets.logo2,
         isMy: false,
       ),
       Site(
         title: 'Facebook',
-        url: 'https://www.facebook.com',
-        logo: '',
+        url: 'https://www.facebook.com/',
         asset: Assets.logo3,
+        isMy: false,
+      ),
+      Site(
+        title: 'X',
+        url: 'https://x.com/',
+        asset: Assets.logo4,
+        isMy: false,
+      ),
+      Site(
+        title: 'Reddit',
+        url: 'https://reddit.com/',
+        asset: Assets.logo5,
+        isMy: false,
+      ),
+      Site(
+        title: 'TikTok',
+        url: 'https://tiktok.com/',
+        asset: Assets.logo6,
+        isMy: false,
+      ),
+      Site(
+        title: 'Netflix',
+        url: 'https://netflix.com/',
+        asset: Assets.logo7,
         isMy: false,
       ),
     ];
@@ -54,6 +78,10 @@ class SitesScreen extends StatelessWidget {
         const SizedBox(height: Constants.padding),
         BlocBuilder<SiteBloc, SiteState>(
           builder: (context, state) {
+            if (state is SitesLoading) {
+              return const LoadingWidget();
+            }
+
             if (state is SitesLoaded) {
               final sites = state.sites;
 
@@ -82,7 +110,12 @@ class SitesScreen extends StatelessWidget {
           },
         ),
         const SizedBox(height: Constants.padding),
-        const AddButton(),
+        AddButton(
+          title: 'Add site',
+          onPressed: () {
+            context.push(AddSiteScreen.routePath);
+          },
+        ),
       ],
     );
   }

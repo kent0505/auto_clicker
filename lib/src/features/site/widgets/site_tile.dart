@@ -14,11 +14,9 @@ class SiteTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.sizeOf(context).width;
-
     return Container(
       height: 84,
-      width: width / 3 - 16,
+      width: MediaQuery.sizeOf(context).width / 3 - 16,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: AppColors.tile,
@@ -33,21 +31,21 @@ class SiteTile extends StatelessWidget {
         },
         child: Column(
           children: [
-            site.asset.isEmpty
-                ? Expanded(
-                    child: Image.network(
+            Expanded(
+              child: site.asset.isEmpty
+                  ? Image.network(
                       site.logo,
+                      width: 50,
                       errorBuilder: errorBuilder,
                       frameBuilder: frameBuilder,
-                    ),
-                  )
-                : Expanded(
-                    child: Image.asset(
+                    )
+                  : Image.asset(
                       site.asset,
+                      width: 50,
                       errorBuilder: errorBuilder,
                       frameBuilder: frameBuilder,
                     ),
-                  ),
+            ),
             const SizedBox(height: 10),
             Text(
               site.title,

@@ -14,23 +14,16 @@ class ClickerBloc extends Bloc<ClickerEvent, ClickerState> {
   ClickerBloc() : super(ClickerState(clicks: [Click()])) {
     on<ClickerEvent>(
       (event, emit) => switch (event) {
-        ChangeSettings() => _onChangeSettings(event, emit),
         ChangeInterval() => _onChangeInterval(event, emit),
         ChangeRepeat() => _onChangeRepeat(event, emit),
+        ChangeDoubleClick() => _onChangeDoubleClick(event, emit),
+        ChangeSwipeMode() => _onChangeSwipeMode(event, emit),
         ResetClicks() => _onResetClicks(event, emit),
         AddClick() => _onAddClick(event, emit),
         RemoveClick() => _onRemoveClick(event, emit),
         MoveClick() => _onMoveClick(event, emit),
-        ChangeDoubleClick() => _onChangeDoubleClick(event, emit),
       },
     );
-  }
-
-  void _onChangeSettings(
-    ChangeSettings event,
-    Emitter<ClickerState> emit,
-  ) {
-    emit(state.copyWith(interval: event.settings.interval));
   }
 
   void _onChangeInterval(
@@ -45,6 +38,20 @@ class ClickerBloc extends Bloc<ClickerEvent, ClickerState> {
     Emitter<ClickerState> emit,
   ) {
     emit(state.copyWith(repeat: event.repeat));
+  }
+
+  void _onChangeDoubleClick(
+    ChangeDoubleClick event,
+    Emitter<ClickerState> emit,
+  ) {
+    emit(state.copyWith(doubleClick: !state.doubleClick));
+  }
+
+  void _onChangeSwipeMode(
+    ChangeSwipeMode event,
+    Emitter<ClickerState> emit,
+  ) {
+    emit(state.copyWith(swipeMode: !state.swipeMode));
   }
 
   void _onResetClicks(
@@ -93,12 +100,5 @@ class ClickerBloc extends Bloc<ClickerEvent, ClickerState> {
     final clicks = List<Click>.from(state.clicks);
 
     emit(state.copyWith(clicks: clicks));
-  }
-
-  void _onChangeDoubleClick(
-    ChangeDoubleClick event,
-    Emitter<ClickerState> emit,
-  ) {
-    emit(state.copyWith(doubleClick: !state.doubleClick));
   }
 }

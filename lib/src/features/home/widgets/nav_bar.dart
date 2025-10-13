@@ -23,29 +23,29 @@ class NavBar extends StatelessWidget {
           color: AppColors.tile,
           borderRadius: BorderRadius.circular(Constants.radius * 2),
         ),
-        child: BlocBuilder<HomeBloc, HomeState>(
+        child: BlocBuilder<HomeBloc, int>(
           builder: (context, state) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               spacing: 16,
               children: [
                 _NavBarButton(
-                  index: 1,
+                  index: 0,
                   title: 'Autoclicker',
                   icon: Icons.home,
-                  active: state is HomeInitial,
+                  active: state == 0,
+                ),
+                _NavBarButton(
+                  index: 1,
+                  title: 'Guides',
+                  icon: Icons.info,
+                  active: state == 1,
                 ),
                 _NavBarButton(
                   index: 2,
-                  title: 'Guides',
-                  icon: Icons.info,
-                  active: state is HomeGuides,
-                ),
-                _NavBarButton(
-                  index: 3,
                   title: 'Settings',
                   icon: Icons.settings,
-                  active: state is HomeSettings,
+                  active: state == 2,
                 ),
               ],
             );
@@ -59,14 +59,14 @@ class NavBar extends StatelessWidget {
 class _NavBarButton extends StatelessWidget {
   const _NavBarButton({
     required this.index,
-    required this.icon,
     required this.title,
+    required this.icon,
     required this.active,
   });
 
+  final int index;
   final String title;
   final IconData icon;
-  final int index;
   final bool active;
 
   @override

@@ -55,16 +55,26 @@ class _OnboardScreenState extends State<OnboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           PageView(
             controller: pageController,
             onPageChanged: onPageChanged,
-            children: const [
-              Center(child: Text('1')),
-              Center(child: Text('2')),
-              Center(child: Text('3')),
+            children: [
+              Image.asset(Assets.onb1),
+              Padding(
+                padding: const EdgeInsets.all(Constants.padding),
+                child: Image.asset(Assets.onb2),
+              ),
+              RotatedBox(
+                quarterTurns: 2,
+                child: Image.asset(
+                  Assets.icon,
+                  color: AppColors.accent,
+                ),
+              ),
             ],
           ),
           Container(
@@ -90,9 +100,9 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 const SizedBox(height: 10),
                 Text(
                   switch (index) {
-                    0 => 'Best auto-clicker',
-                    1 => 'Easy tap tool',
-                    2 => 'Set up your multiclick',
+                    0 => 'Automate Your Clicks Effortlessly',
+                    1 => 'Full Control, Your Way',
+                    2 => 'Ready to Click?',
                     _ => '',
                   },
                   textAlign: TextAlign.center,
@@ -102,19 +112,26 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     fontFamily: AppFonts.w600,
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  switch (index) {
-                    0 => 'Auto-clicker for Roblox and more',
-                    1 => 'Quick precise taps - for any game or task',
-                    2 => 'Multi-click makes gaming even easier',
-                    _ => '',
-                  },
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: AppColors.text,
-                    fontSize: 16,
-                    fontFamily: AppFonts.w500,
+                Padding(
+                  padding: const EdgeInsets.all(Constants.padding),
+                  child: Text(
+                    switch (index) {
+                      0 =>
+                        'Boost your productivity or test your pages faster. Auto Clicker lets you perform automatic clicks anywhere on a webpage — hands-free and fully customizable.',
+                      1 =>
+                        'Set your click speed, choose single or double click, and fine-tune timing to match your needs. Everything happens right inside your browser view.',
+                      2 =>
+                        'Start your session, place your click points, and watch it go! You’re always in control — stop anytime with one tap.',
+                      _ => '',
+                    },
+                    textAlign: TextAlign.center,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: AppColors.text,
+                      fontSize: 16,
+                      fontFamily: AppFonts.w500,
+                    ),
                   ),
                 ),
                 const Spacer(),

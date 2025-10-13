@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/utils.dart';
 import '../../../core/constants.dart';
-import '../../guide/screens/instruction_screen.dart';
+import '../../guide/screens/guide_screen.dart';
 import '../../settings/screens/settings_screen.dart';
 import '../../site/screens/sites_screen.dart';
 import '../widgets/home_appbar.dart';
@@ -28,23 +27,16 @@ class HomeScreen extends StatelessWidget {
                   Constants.padding +
                   MediaQuery.of(context).viewPadding.bottom,
             ),
-            child: BlocConsumer<HomeBloc, HomeState>(
-              listener: (context, state) {
-                logger(state.runtimeType);
-              },
+            child: BlocBuilder<HomeBloc, int>(
               buildWhen: (previous, current) {
-                return previous.runtimeType != current.runtimeType;
+                return previous != current;
               },
               builder: (context, state) {
                 return IndexedStack(
-                  index: switch (state) {
-                    HomeInitial() => 0,
-                    HomeGuides() => 1,
-                    HomeSettings() => 2,
-                  },
+                  index: state,
                   children: const [
                     SitesScreen(),
-                    InstructionScreen(),
+                    GuideScreen(),
                     SettingsScreen(),
                   ],
                 );

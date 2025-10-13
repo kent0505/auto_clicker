@@ -4,6 +4,7 @@ export './my_colors.dart';
 
 abstract final class AppColors {
   static const Color accent = Color(0xff715A5A);
+  // static const Color accent = Color(0xff5F374B);
   static const Color error = Colors.redAccent;
   static const Color bg = Color(0xff37353E);
   static const Color tile = Color(0xff44444E);
@@ -30,11 +31,16 @@ abstract final class Assets {
   static const String logo1 = 'assets/logo1.png';
   static const String logo2 = 'assets/logo2.png';
   static const String logo3 = 'assets/logo3.png';
+  static const String logo4 = 'assets/logo4.png';
+  static const String logo5 = 'assets/logo5.png';
+  static const String logo6 = 'assets/logo6.png';
+  static const String logo7 = 'assets/logo7.png';
+  static const String onb1 = 'assets/onb1.jpg';
+  static const String onb2 = 'assets/onb2.jpg';
 }
 
 abstract final class Keys {
   static const String onboard = 'onboard';
-  static const String token = 'token';
 }
 
 abstract final class Identifiers {

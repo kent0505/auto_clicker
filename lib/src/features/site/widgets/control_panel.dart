@@ -53,7 +53,7 @@ class ControlPanel extends StatelessWidget {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return const SettingsSheet();
+                    return SettingsSheet(controller: controller);
                   },
                 );
               },

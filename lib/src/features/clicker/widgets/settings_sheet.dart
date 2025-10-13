@@ -1,14 +1,22 @@
-import 'package:auto_clicker/src/core/widgets/switch_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/widgets/button.dart';
+import '../../../core/widgets/dialog_widget.dart';
 import '../../../core/widgets/icon_widget.dart';
+import '../../../core/widgets/switch_button.dart';
+import '../../../core/widgets/add_button.dart';
+import '../../site/bloc/site_bloc.dart';
+import '../../site/models/site.dart';
 import '../bloc/clicker_bloc.dart';
 
 class SettingsSheet extends StatelessWidget {
-  const SettingsSheet({super.key});
+  const SettingsSheet({super.key, required this.controller});
+
+  final WebViewController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +70,52 @@ class SettingsSheet extends StatelessWidget {
                     );
                   },
                 ),
-                // const SizedBox(width: 44),
               ],
             ),
+          ),
+          SizedBox(
+            height: 44,
+            child: Row(
+              children: [
+                const _Title('Swipe mode'),
+                const Spacer(),
+                BlocBuilder<ClickerBloc, ClickerState>(
+                  builder: (context, state) {
+                    return SwitchButton(
+                      isActive: state.swipeMode,
+                      onPressed: () {
+                        context.read<ClickerBloc>().add(ChangeSwipeMode());
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          AddButton(
+            title: 'Save url',
+            onPressed: () async {
+              final url = (await controller.currentUrl() ?? '');
+              final title =
+                  url.replaceAll('https://', '').replaceAll('www.', '');
+
+              if (context.mounted) {
+                DialogWidget.show(
+                  context,
+                  title: 'Save url $title?',
+                  confirm: true,
+                  onPressed: () {
+                    final site = Site(
+                      title: title,
+                      url: url,
+                    );
+                    context.read<SiteBloc>().add(AddSite(site: site));
+
+                    context.pop();
+                  },
+                );
+              }
+            },
           ),
         ],
       ),

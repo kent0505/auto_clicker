@@ -67,6 +67,7 @@ class _SplashScreenState extends State<SplashScreen>
           child: Image.asset(
             Assets.icon,
             height: 200,
+            color: AppColors.text,
           ),
         ),
       ),

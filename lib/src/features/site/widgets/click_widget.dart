@@ -3,17 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants.dart';
 import '../../clicker/bloc/clicker_bloc.dart';
+import '../../clicker/models/click.dart';
 
 class ClickWidget extends StatelessWidget {
-  const ClickWidget({super.key, required this.index});
+  const ClickWidget({
+    super.key,
+    required this.index,
+    required this.click,
+  });
 
   final int index;
+  final Click click;
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ClickerBloc>();
     final clicks = bloc.state.clicks;
-    final click = clicks[index];
 
     return Positioned(
       left: click.x,
@@ -33,7 +38,7 @@ class ClickWidget extends StatelessWidget {
         child: Stack(
           children: [
             Icon(
-              Icons.touch_app,
+              bloc.state.swipeMode ? Icons.swipe_down : Icons.touch_app,
               color: AppColors.accent,
               size: click.clicked ? 50 : 60,
             ),

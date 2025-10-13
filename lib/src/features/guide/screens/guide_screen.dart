@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class InstructionScreen extends StatelessWidget {
-  const InstructionScreen({super.key});
+class GuideScreen extends StatelessWidget {
+  const GuideScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

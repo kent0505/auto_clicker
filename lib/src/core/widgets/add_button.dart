@@ -1,34 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets/button.dart';
-import '../../../core/widgets/icon_widget.dart';
-import '../screens/add_site_screen.dart';
+import '../constants.dart';
+import 'button.dart';
+import 'icon_widget.dart';
 
 class AddButton extends StatelessWidget {
-  const AddButton({super.key});
+  const AddButton({
+    super.key,
+    required this.title,
+    required this.onPressed,
+  });
+
+  final String title;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Button(
-      onPressed: () {
-        context.push(AddSiteScreen.routePath);
-      },
+      onPressed: onPressed,
       child: Container(
         height: 40,
         decoration: BoxDecoration(
           color: AppColors.tile,
           borderRadius: BorderRadius.circular(Constants.radius),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconWidget(Icons.add_rounded),
-            SizedBox(width: 10),
+            const IconWidget(Icons.add_rounded),
+            const SizedBox(width: 10),
             Text(
-              'Add site',
-              style: TextStyle(
+              title,
+              style: const TextStyle(
                 color: AppColors.text,
                 fontSize: 18,
                 fontFamily: AppFonts.w600,

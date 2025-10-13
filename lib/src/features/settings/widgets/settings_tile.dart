@@ -42,10 +42,10 @@ class SettingsTile extends StatelessWidget {
             ),
             const Spacer(),
             vip
-                ? BlocBuilder<VipBloc, bool>(
-                    builder: (context, isVip) {
+                ? BlocBuilder<VipBloc, VipState>(
+                    builder: (context, state) {
                       return Text(
-                        isVip ? 'VIP' : 'Free',
+                        state.isVIP ? 'VIP' : 'Free',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,

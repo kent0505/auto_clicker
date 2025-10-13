@@ -51,7 +51,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                   child: Text(
                     title,
                     textAlign: TextAlign.center,
-                    maxLines: 3,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: AppColors.text,

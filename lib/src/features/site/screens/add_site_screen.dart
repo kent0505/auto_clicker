@@ -1,4 +1,3 @@
-import 'package:auto_clicker/src/core/widgets/snack.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +6,7 @@ import '../../../core/constants.dart';
 import '../../../core/widgets/appbar.dart';
 import '../../../core/widgets/field.dart';
 import '../../../core/widgets/main_button.dart';
+import '../../../core/widgets/snack.dart';
 import '../bloc/site_bloc.dart';
 import '../models/site.dart';
 
@@ -37,7 +37,7 @@ class _AddSiteScreenState extends State<AddSiteScreen> {
   void onAdd() {
     final site = Site(
       title: titleController.text,
-      url: urlController.text,
+      url: 'https://${urlController.text.toLowerCase()}',
     );
     context.read<SiteBloc>().add(AddSite(site: site));
   }

@@ -1,4 +1,4 @@
-class Click {
+final class Click {
   Click({
     this.x = 100,
     this.y = 100,

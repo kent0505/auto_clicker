@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/click.dart';
+import '../models/swipe.dart';
 
 part 'clicker_event.dart';
 part 'clicker_state.dart';

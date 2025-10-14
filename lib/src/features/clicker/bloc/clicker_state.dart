@@ -7,6 +7,7 @@ final class ClickerState {
     this.doubleClick = false,
     this.swipeMode = false,
     required this.clicks,
+    this.swipes = const [],
   });
 
   int interval;
@@ -14,6 +15,7 @@ final class ClickerState {
   bool doubleClick;
   bool swipeMode;
   List<Click> clicks;
+  List<Swipe> swipes;
 
   ClickerState copyWith({
     int? interval,
@@ -21,6 +23,7 @@ final class ClickerState {
     bool? doubleClick,
     bool? swipeMode,
     List<Click>? clicks,
+    List<Swipe>? swipes,
   }) {
     return ClickerState(
       interval: interval ?? this.interval,
@@ -28,6 +31,7 @@ final class ClickerState {
       doubleClick: doubleClick ?? this.doubleClick,
       swipeMode: swipeMode ?? this.swipeMode,
       clicks: clicks ?? this.clicks,
+      swipes: swipes ?? this.swipes,
     );
   }
 }

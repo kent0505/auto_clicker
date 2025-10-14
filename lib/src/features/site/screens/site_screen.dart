@@ -35,10 +35,20 @@ class _SiteScreenState extends State<SiteScreen> {
   bool invalid = false;
   bool started = false;
 
-  Future<void> runJS(Click click) async {
+  Future<void> runJS(Click click, {bool swipeMode = false}) async {
     final x = click.x + 10;
     final y = click.y + 10;
-    final js = """
+
+    final js = swipeMode
+        ? '''
+        (function() {
+        const el = document.elementFromPoint($x, $y);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+        }
+      })();
+        '''
+        : '''
       (function() {
         const el = document.elementFromPoint($x, $y);
         if (el) {
@@ -50,7 +60,7 @@ class _SiteScreenState extends State<SiteScreen> {
           return 'No element found at ($x, $y)';
         }
       })();
-    """;
+    ''';
     await controller.runJavaScript(js);
   }
 
@@ -60,6 +70,7 @@ class _SiteScreenState extends State<SiteScreen> {
 
     final milliseconds = bloc.state.interval;
     final doubleClick = bloc.state.doubleClick;
+    final swipeMode = bloc.state.swipeMode;
     int repeat = bloc.state.repeat;
     started = true;
 
@@ -70,9 +81,9 @@ class _SiteScreenState extends State<SiteScreen> {
         setState(() {
           click.clicked = true;
         });
-        await runJS(click);
+        await runJS(click, swipeMode: swipeMode);
         await Future.delayed(const Duration(milliseconds: 200));
-        if (doubleClick) await runJS(click);
+        if (doubleClick && !swipeMode) await runJS(click);
         setState(() {
           click.clicked = false;
         });

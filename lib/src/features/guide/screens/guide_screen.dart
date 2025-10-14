@@ -6,7 +6,9 @@ class GuideScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const [],
+      children: const [
+        Center(child: Text('Осталось только это')),
+      ],
     );
   }
 }

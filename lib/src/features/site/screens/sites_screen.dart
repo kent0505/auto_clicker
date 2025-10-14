@@ -63,7 +63,7 @@ class SitesScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(Constants.padding),
       children: [
-        const _Title('Default'),
+        const _Title('Popular'),
         const SizedBox(height: 6),
         Wrap(
           spacing: 8,

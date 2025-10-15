@@ -38,14 +38,16 @@ class ClickWidget extends StatelessWidget {
         child: Stack(
           children: [
             Icon(
-              bloc.state.swipeMode ? Icons.open_with_rounded : Icons.touch_app,
+              bloc.state.swipeMode
+                  ? Icons.open_with_rounded
+                  : Icons.touch_app_rounded,
               color: AppColors.error,
               size: click.clicked ? 50 : 60,
             ),
             if (!click.clicked && clicks.length > 1)
               Positioned(
                 right: bloc.state.swipeMode ? 26 : 20,
-                bottom: bloc.state.swipeMode ? 21 : 2,
+                bottom: bloc.state.swipeMode ? 21 : 6,
                 child: Text(
                   (index + 1).toString(),
                   style: const TextStyle(

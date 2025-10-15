@@ -79,7 +79,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
           ),
           Container(
             height: 260,
-            color: AppColors.tile,
+            color: AppColors.bg,
             child: Column(
               children: [
                 const SizedBox(height: 10),
@@ -101,7 +101,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 Text(
                   switch (index) {
                     0 => 'Automate Your Clicks Effortlessly',
-                    1 => 'Full Control, Your Way',
+                    1 => 'Add Multiple Click Points',
                     2 => 'Ready to Click?',
                     _ => '',
                   },
@@ -119,7 +119,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       0 =>
                         'Boost your productivity or test your pages faster. Auto Clicker lets you perform automatic clicks anywhere on a webpage — hands-free and fully customizable.',
                       1 =>
-                        'Set your click speed, choose single or double click, and fine-tune timing to match your needs. Everything happens right inside your browser view.',
+                        'Create and manage several click areas on the screen. Perfect for automating repeated taps anywhere you need.',
                       2 =>
                         'Start your session, place your click points, and watch it go! You’re always in control — stop anytime with one tap.',
                       _ => '',

@@ -15,6 +15,8 @@ final class ChangeRepeat extends ClickerEvent {
   final int repeat;
 }
 
+final class ChangeEndless extends ClickerEvent {}
+
 final class ChangeDoubleClick extends ClickerEvent {}
 
 final class ChangeSwipeMode extends ClickerEvent {}

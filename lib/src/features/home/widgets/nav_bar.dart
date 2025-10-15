@@ -32,19 +32,19 @@ class NavBar extends StatelessWidget {
                 _NavBarButton(
                   index: 0,
                   title: 'Autoclicker',
-                  icon: Icons.home,
+                  icon: Icons.home_rounded,
                   active: state == 0,
                 ),
                 _NavBarButton(
                   index: 1,
                   title: 'Guides',
-                  icon: Icons.info,
+                  icon: Icons.info_rounded,
                   active: state == 1,
                 ),
                 _NavBarButton(
                   index: 2,
                   title: 'Settings',
-                  icon: Icons.settings,
+                  icon: Icons.settings_rounded,
                   active: state == 2,
                 ),
               ],

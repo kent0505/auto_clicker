@@ -17,6 +17,7 @@ class ClickerBloc extends Bloc<ClickerEvent, ClickerState> {
       (event, emit) => switch (event) {
         ChangeInterval() => _onChangeInterval(event, emit),
         ChangeRepeat() => _onChangeRepeat(event, emit),
+        ChangeEndless() => _onChangeEndless(event, emit),
         ChangeDoubleClick() => _onChangeDoubleClick(event, emit),
         ChangeSwipeMode() => _onChangeSwipeMode(event, emit),
         ResetClicks() => _onResetClicks(event, emit),
@@ -39,6 +40,13 @@ class ClickerBloc extends Bloc<ClickerEvent, ClickerState> {
     Emitter<ClickerState> emit,
   ) {
     emit(state.copyWith(repeat: event.repeat));
+  }
+
+  void _onChangeEndless(
+    ChangeEndless event,
+    Emitter<ClickerState> emit,
+  ) {
+    emit(state.copyWith(endless: !state.endless));
   }
 
   void _onChangeDoubleClick(

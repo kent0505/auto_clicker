@@ -92,7 +92,7 @@ class _SiteScreenState extends State<SiteScreen> {
       }
 
       repeat--;
-    } while (mounted && started && repeat > 0);
+    } while (mounted && started && repeat > 0 || bloc.state.endless);
 
     if (mounted) {
       setState(() {

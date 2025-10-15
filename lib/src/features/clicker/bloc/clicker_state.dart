@@ -4,6 +4,7 @@ final class ClickerState {
   ClickerState({
     this.interval = 1000,
     this.repeat = 10,
+    this.endless = false,
     this.doubleClick = false,
     this.swipeMode = false,
     required this.clicks,
@@ -12,6 +13,7 @@ final class ClickerState {
 
   int interval;
   int repeat;
+  bool endless;
   bool doubleClick;
   bool swipeMode;
   List<Click> clicks;
@@ -20,6 +22,7 @@ final class ClickerState {
   ClickerState copyWith({
     int? interval,
     int? repeat,
+    bool? endless,
     bool? doubleClick,
     bool? swipeMode,
     List<Click>? clicks,
@@ -28,6 +31,7 @@ final class ClickerState {
     return ClickerState(
       interval: interval ?? this.interval,
       repeat: repeat ?? this.repeat,
+      endless: endless ?? this.endless,
       doubleClick: doubleClick ?? this.doubleClick,
       swipeMode: swipeMode ?? this.swipeMode,
       clicks: clicks ?? this.clicks,

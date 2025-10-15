@@ -6,7 +6,7 @@ import '../../../core/constants.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/icon_widget.dart';
 import '../../clicker/bloc/clicker_bloc.dart';
-import '../../clicker/widgets/settings_sheet.dart';
+import 'advanced_settings_sheet.dart';
 
 class ControlPanel extends StatelessWidget {
   const ControlPanel({
@@ -38,7 +38,7 @@ class ControlPanel extends StatelessWidget {
                   await controller.goBack();
                 }
               },
-              child: const IconWidget(Icons.arrow_back_ios_new_rounded),
+              child: const IconWidget(Icons.arrow_back_ios_rounded),
             ),
             Button(
               onPressed: () async {
@@ -53,7 +53,7 @@ class ControlPanel extends StatelessWidget {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return SettingsSheet(controller: controller);
+                    return AdvancedSettingsSheet(controller: controller);
                   },
                 );
               },
@@ -81,7 +81,7 @@ class ControlPanel extends StatelessWidget {
                   child: Stack(
                     children: [
                       IconWidget(
-                        Icons.touch_app,
+                        Icons.touch_app_rounded,
                         color: color,
                       ),
                       Text(

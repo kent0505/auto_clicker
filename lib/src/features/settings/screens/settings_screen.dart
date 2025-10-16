@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants.dart';
@@ -44,18 +44,21 @@ class SettingsScreen extends StatelessWidget {
         ),
         SettingsTile(
           title: 'Privacy Policy',
+          icon: CupertinoIcons.shield,
           onPressed: () async {
             await launchURL('https://rezka.ag/');
           },
         ),
         SettingsTile(
           title: 'Terms of Use',
+          icon: CupertinoIcons.doc_text,
           onPressed: () async {
             await launchURL('https://instagram.com/');
           },
         ),
         SettingsTile(
           title: 'Support',
+          icon: CupertinoIcons.question_circle,
           onPressed: () async {
             await launchURL('https://instagram.com/');
           },

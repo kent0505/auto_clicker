@@ -64,10 +64,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
             onPageChanged: onPageChanged,
             children: [
               Image.asset(Assets.onb1),
-              Padding(
-                padding: const EdgeInsets.all(Constants.padding),
-                child: Image.asset(Assets.onb2),
-              ),
+              Image.asset(Assets.onb2),
               RotatedBox(
                 quarterTurns: 2,
                 child: Image.asset(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,11 +11,13 @@ class SettingsTile extends StatelessWidget {
   const SettingsTile({
     super.key,
     required this.title,
+    this.icon,
     this.vip = false,
     required this.onPressed,
   });
 
   final String title;
+  final IconData? icon;
   final bool vip;
   final VoidCallback onPressed;
 
@@ -32,6 +35,8 @@ class SettingsTile extends StatelessWidget {
         onPressed: onPressed,
         child: Row(
           children: [
+            if (icon != null) IconWidget(icon!),
+            const SizedBox(width: 10),
             Text(
               title,
               style: const TextStyle(
@@ -54,7 +59,7 @@ class SettingsTile extends StatelessWidget {
                       );
                     },
                   )
-                : const IconWidget(Icons.chevron_right_rounded),
+                : const IconWidget(CupertinoIcons.chevron_right),
           ],
         ),
       ),

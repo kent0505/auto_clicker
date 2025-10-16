@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -36,8 +37,8 @@ class _SiteScreenState extends State<SiteScreen> {
   bool started = false;
 
   Future<void> runJS(Click click, {bool swipeMode = false}) async {
-    final x = click.x + 10;
-    final y = click.y + 10;
+    final x = click.x + 30;
+    final y = click.y + 30;
 
     final js = swipeMode
         ? '''
@@ -211,7 +212,7 @@ class _SiteScreenState extends State<SiteScreen> {
           right: widget.site.isMy
               ? Button(
                   onPressed: onDelete,
-                  child: const IconWidget(Icons.delete),
+                  child: const IconWidget(CupertinoIcons.delete),
                 )
               : null,
         ),
@@ -238,6 +239,7 @@ class _SiteScreenState extends State<SiteScreen> {
                             return ClickWidget(
                               index: index,
                               click: state.clicks[index],
+                              state: state,
                             );
                           },
                         ),

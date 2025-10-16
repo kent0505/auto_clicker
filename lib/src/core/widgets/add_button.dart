@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../constants.dart';
 import 'button.dart';
@@ -16,18 +16,18 @@ class AddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Button(
-      onPressed: onPressed,
-      child: Container(
-        height: 40,
-        decoration: BoxDecoration(
-          color: AppColors.tile,
-          borderRadius: BorderRadius.circular(Constants.radius),
-        ),
+    return Container(
+      height: 40,
+      decoration: BoxDecoration(
+        color: AppColors.tile,
+        borderRadius: BorderRadius.circular(Constants.radius),
+      ),
+      child: Button(
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const IconWidget(Icons.add_rounded),
+            const IconWidget(CupertinoIcons.add),
             const SizedBox(width: 10),
             Text(
               title,

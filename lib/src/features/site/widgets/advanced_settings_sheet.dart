@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -206,7 +207,7 @@ class _ChangeIntervalButton extends StatelessWidget {
             }
           : null,
       child: IconWidget(
-        increment ? Icons.chevron_right_rounded : Icons.chevron_left_rounded,
+        increment ? CupertinoIcons.forward : CupertinoIcons.back,
         color: active ? AppColors.text : AppColors.tile,
       ),
     );
@@ -233,7 +234,7 @@ class _ChangeRepeatButton extends StatelessWidget {
             }
           : null,
       child: IconWidget(
-        increment ? Icons.chevron_right_rounded : Icons.chevron_left_rounded,
+        increment ? CupertinoIcons.forward : CupertinoIcons.back,
         color: active ? AppColors.text : AppColors.tile,
       ),
     );

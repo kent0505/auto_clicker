@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 import '../constants.dart';
@@ -44,7 +44,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                     logger(e);
                   }
                 },
-                child: const IconWidget(Icons.arrow_back_ios_rounded),
+                child: const IconWidget(CupertinoIcons.back),
               ),
               Expanded(
                 child: Center(

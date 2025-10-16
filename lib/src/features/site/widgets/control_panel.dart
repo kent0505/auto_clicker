@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -38,7 +39,7 @@ class ControlPanel extends StatelessWidget {
                   await controller.goBack();
                 }
               },
-              child: const IconWidget(Icons.arrow_back_ios_rounded),
+              child: const IconWidget(CupertinoIcons.back),
             ),
             Button(
               onPressed: () async {
@@ -46,7 +47,7 @@ class ControlPanel extends StatelessWidget {
                   await controller.goForward();
                 }
               },
-              child: const IconWidget(Icons.arrow_forward_ios_rounded),
+              child: const IconWidget(CupertinoIcons.forward),
             ),
             Button(
               onPressed: () {
@@ -57,7 +58,7 @@ class ControlPanel extends StatelessWidget {
                   },
                 );
               },
-              child: const IconWidget(Icons.settings_rounded),
+              child: const IconWidget(CupertinoIcons.settings),
             ),
             Button(
               onPressed: started
@@ -65,7 +66,7 @@ class ControlPanel extends StatelessWidget {
                   : () {
                       context.read<ClickerBloc>().add(ResetClicks());
                     },
-              child: const IconWidget(Icons.restart_alt_rounded),
+              child: const IconWidget(CupertinoIcons.restart),
             ),
             BlocBuilder<ClickerBloc, ClickerState>(
               builder: (context, state) {
@@ -79,17 +80,22 @@ class ControlPanel extends StatelessWidget {
                         }
                       : null,
                   child: Stack(
+                    alignment: Alignment.center,
                     children: [
                       IconWidget(
-                        Icons.touch_app_rounded,
+                        CupertinoIcons.circle,
                         color: color,
                       ),
-                      Text(
-                        (5 - state.clicks.length).toString(),
-                        style: TextStyle(
-                          color: color,
-                          fontSize: 12,
-                          fontFamily: AppFonts.w600,
+                      Positioned(
+                        top: 8,
+                        left: 11,
+                        child: Text(
+                          (5 - state.clicks.length).toString(),
+                          style: TextStyle(
+                            color: color,
+                            fontSize: 12,
+                            fontFamily: AppFonts.w600,
+                          ),
                         ),
                       ),
                     ],
@@ -100,7 +106,7 @@ class ControlPanel extends StatelessWidget {
             Button(
               onPressed: started ? onStop : onStart,
               child: IconWidget(
-                started ? Icons.stop_rounded : Icons.play_arrow_rounded,
+                started ? CupertinoIcons.stop : CupertinoIcons.play,
               ),
             ),
           ],

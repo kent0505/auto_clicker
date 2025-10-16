@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/button.dart';
@@ -32,19 +32,19 @@ class NavBar extends StatelessWidget {
                 _NavBarButton(
                   index: 0,
                   title: 'Autoclicker',
-                  icon: Icons.home_rounded,
+                  icon: CupertinoIcons.home,
                   active: state == 0,
                 ),
                 _NavBarButton(
                   index: 1,
                   title: 'Guides',
-                  icon: Icons.info_rounded,
+                  icon: CupertinoIcons.info,
                   active: state == 1,
                 ),
                 _NavBarButton(
                   index: 2,
                   title: 'Settings',
-                  icon: Icons.settings_rounded,
+                  icon: CupertinoIcons.settings,
                   active: state == 2,
                 ),
               ],

@@ -2,85 +2,59 @@ import 'package:flutter/material.dart';
 
 final class MyColors extends ThemeExtension<MyColors> {
   const MyColors({
-    required this.bg,
     required this.accent,
-    required this.textPrimary,
-    required this.textSecondary,
-    required this.textThree,
-    required this.tertiaryOne,
-    required this.tertiaryTwo,
-    required this.tertiaryThree,
-    required this.tertiaryFour,
+    required this.bg,
+    required this.error,
+    required this.tile,
+    required this.text,
+    required this.text2,
   });
 
-  final Color bg;
   final Color accent;
-  final Color textPrimary;
-  final Color textSecondary;
-  final Color textThree;
-  final Color tertiaryOne;
-  final Color tertiaryTwo;
-  final Color tertiaryThree;
-  final Color tertiaryFour;
+  final Color bg;
+  final Color error;
+  final Color tile;
+  final Color text;
+  final Color text2;
 
   factory MyColors.dark() {
-    return const MyColors(
-      bg: Color(0xff121212),
-      accent: Color(0xff41fda9),
-      textPrimary: Color(0xfffdfdfd),
-      textSecondary: Color(0xffb0b0b0),
-      textThree: Color(0xff535353),
-      tertiaryOne: Color(0xff1b1b1b),
-      tertiaryTwo: Color(0xff1a382a),
-      tertiaryThree: Color(0xff485c53),
-      tertiaryFour: Color(0xff313131),
+    return MyColors(
+      accent: const Color(0xffBE7B72),
+      bg: const Color(0xff37353E),
+      error: const Color(0xffC63C51),
+      tile: const Color(0xff44444E),
+      text: const Color(0xffD3DAD9),
+      text2: const Color(0xffD3DAD9).withValues(alpha: 0.4),
     );
   }
 
   factory MyColors.light() {
-    return const MyColors(
-      bg: Color(0xffFDFDFD),
-      accent: Color(0xff24F597),
-      textPrimary: Color(0xff121212),
-      textSecondary: Color(0xffb0b0b0),
-      textThree: Color(0xff909090),
-      tertiaryOne: Color(0xffF6F6F6),
-      tertiaryTwo: Color(0xffE6FFF3),
-      tertiaryThree: Color(0xff97A19D),
-      tertiaryFour: Color(0xffEFEFEF),
+    return MyColors(
+      accent: const Color(0xffE26B5A),
+      bg: const Color(0xffF5F5F0),
+      error: const Color(0xffF08787),
+      tile: const Color(0xffE6D8C3),
+      text: const Color(0xff1A1A1A),
+      text2: const Color(0xff1A1A1A).withValues(alpha: 0.5),
     );
   }
 
   @override
   MyColors copyWith({
-    Color? bg,
     Color? accent,
-    Color? textPrimary,
-    Color? textSecondary,
-    Color? textThree,
-    Color? tertiaryOne,
-    Color? tertiaryTwo,
-    Color? tertiaryThree,
-    Color? tertiaryFour,
-    Color? system,
-    Color? orange,
-    Color? blue,
-    Color? yellow,
-    Color? violet,
-    Color? green,
-    Color? shopping,
-    Color? linear2,
+    Color? bg,
+    Color? error,
+    Color? tile,
+    Color? text,
+    Color? text2,
   }) {
     return MyColors(
-      bg: bg ?? this.bg,
       accent: accent ?? this.accent,
-      textPrimary: textPrimary ?? this.textPrimary,
-      textSecondary: textSecondary ?? this.textSecondary,
-      textThree: textThree ?? this.textThree,
-      tertiaryOne: tertiaryOne ?? this.tertiaryOne,
-      tertiaryTwo: tertiaryTwo ?? this.tertiaryTwo,
-      tertiaryThree: tertiaryThree ?? this.tertiaryThree,
-      tertiaryFour: tertiaryFour ?? this.tertiaryFour,
+      bg: bg ?? this.bg,
+      error: error ?? this.error,
+      tile: tile ?? this.tile,
+      text: text ?? this.text,
+      text2: text2 ?? this.text2,
     );
   }
 
@@ -88,15 +62,12 @@ final class MyColors extends ThemeExtension<MyColors> {
   MyColors lerp(ThemeExtension<MyColors>? other, double t) {
     if (other is! MyColors) return this;
     return MyColors(
-      bg: Color.lerp(bg, other.bg, t)!,
       accent: Color.lerp(accent, other.accent, t)!,
-      textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
-      textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
-      textThree: Color.lerp(textThree, other.textThree, t)!,
-      tertiaryOne: Color.lerp(tertiaryOne, other.tertiaryOne, t)!,
-      tertiaryTwo: Color.lerp(tertiaryTwo, other.tertiaryTwo, t)!,
-      tertiaryThree: Color.lerp(tertiaryThree, other.tertiaryThree, t)!,
-      tertiaryFour: Color.lerp(tertiaryFour, other.tertiaryFour, t)!,
+      bg: Color.lerp(bg, other.bg, t)!,
+      error: Color.lerp(error, other.error, t)!,
+      tile: Color.lerp(tile, other.tile, t)!,
+      text: Color.lerp(text, other.text, t)!,
+      text2: Color.lerp(text2, other.text2, t)!,
     );
   }
 }

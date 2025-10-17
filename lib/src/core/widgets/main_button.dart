@@ -26,13 +26,15 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 400),
       height: 56,
       width: width,
       margin: EdgeInsets.symmetric(horizontal: horizontal),
       decoration: BoxDecoration(
-        color: color ?? (active ? AppColors.accent : AppColors.tile),
+        color: color ?? (active ? colors.accent : colors.tile),
         borderRadius: BorderRadius.circular(Constants.radius),
       ),
       child: Button(
@@ -45,7 +47,7 @@ class MainButton extends StatelessWidget {
                 : Text(
                     title,
                     style: TextStyle(
-                      color: active ? AppColors.text : AppColors.text2,
+                      color: active ? colors.text : colors.text2,
                       fontSize: 16,
                       fontFamily: AppFonts.w700,
                     ),

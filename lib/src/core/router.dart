@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/settings/screens/theme_screen.dart';
 import '../features/site/screens/add_site_screen.dart';
 import '../features/site/screens/site_screen.dart';
 import '../features/site/models/site.dart';
@@ -33,6 +34,12 @@ final routerConfig = GoRouter(
     GoRoute(
       path: AddSiteScreen.routePath,
       builder: (context, state) => const AddSiteScreen(),
+    ),
+
+    // settings
+    GoRoute(
+      path: ThemeScreen.routePath,
+      builder: (context, state) => const ThemeScreen(),
     ),
   ],
 );

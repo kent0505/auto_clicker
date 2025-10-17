@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/widgets/icon_widget.dart';
@@ -13,24 +13,24 @@ class AppGuide extends StatelessWidget {
       children: const [
         _Title('Controll panel'),
         _IconGuide(
-          icon: CupertinoIcons.play,
+          icon: MyIcons.play,
           title: 'Start click/swipe',
         ),
         _IconGuide(
-          icon: CupertinoIcons.circle,
+          icon: MyIcons.circle,
           title:
               'Add an additional click area, a maximum of 5 can be added, each area is triggered in turn. To remove it, just click on it',
         ),
         _IconGuide(
-          icon: CupertinoIcons.settings,
+          icon: MyIcons.settings,
           title: 'Open advanced settings',
         ),
         _IconGuide(
-          icon: CupertinoIcons.back,
+          icon: MyIcons.back,
           title: 'Navigate to the previous page in history',
         ),
         _IconGuide(
-          icon: CupertinoIcons.forward,
+          icon: MyIcons.forward,
           title: 'Navigate to the next page in history',
         ),
         SizedBox(height: 8),
@@ -69,10 +69,12 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Text(
       title,
-      style: const TextStyle(
-        color: AppColors.text,
+      style: TextStyle(
+        color: colors.text,
         fontSize: 20,
         fontFamily: AppFonts.w700,
       ),
@@ -87,10 +89,12 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Text(
       title,
-      style: const TextStyle(
-        color: AppColors.text,
+      style: TextStyle(
+        color: colors.text,
         fontSize: 14,
         fontFamily: AppFonts.w500,
         height: 1,
@@ -110,14 +114,16 @@ class _AdvancedGuide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 10),
         Text(
           title,
-          style: const TextStyle(
-            color: AppColors.text,
+          style: TextStyle(
+            color: colors.text,
             fontSize: 18,
             fontFamily: AppFonts.w600,
           ),

@@ -14,12 +14,14 @@ class SiteTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Container(
       height: 84,
       width: MediaQuery.sizeOf(context).width / 3 - 16,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: AppColors.tile,
+        color: colors.tile,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Button(
@@ -52,8 +54,8 @@ class SiteTile extends StatelessWidget {
               maxLines: 2,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: AppColors.text,
+              style: TextStyle(
+                color: colors.text,
                 fontSize: 16,
                 fontFamily: AppFonts.w500,
                 height: 1,

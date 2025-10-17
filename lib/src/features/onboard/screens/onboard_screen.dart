@@ -54,6 +54,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
@@ -69,14 +71,14 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 quarterTurns: 2,
                 child: Image.asset(
                   Assets.icon,
-                  color: AppColors.accent,
+                  color: colors.accent,
                 ),
               ),
             ],
           ),
           Container(
             height: 260,
-            color: AppColors.bg,
+            color: colors.bg,
             child: Column(
               children: [
                 const SizedBox(height: 10),
@@ -84,13 +86,13 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   child: SmoothPageIndicator(
                     controller: pageController,
                     count: 3,
-                    effect: const ScaleEffect(
+                    effect: ScaleEffect(
                       dotHeight: 8,
                       dotWidth: 8,
                       spacing: 10,
                       scale: 1.5,
-                      dotColor: AppColors.text,
-                      activeDotColor: AppColors.accent,
+                      dotColor: colors.text,
+                      activeDotColor: colors.accent,
                     ),
                   ),
                 ),
@@ -103,8 +105,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     _ => '',
                   },
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: AppColors.text,
+                  style: TextStyle(
+                    color: colors.text,
                     fontSize: 20,
                     fontFamily: AppFonts.w600,
                   ),
@@ -124,8 +126,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     textAlign: TextAlign.center,
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: AppColors.text,
+                    style: TextStyle(
+                      color: colors.text,
                       fontSize: 16,
                       fontFamily: AppFonts.w500,
                     ),

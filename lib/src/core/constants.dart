@@ -1,15 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 export './my_colors.dart';
-
-abstract final class AppColors {
-  static const Color accent = Color(0xff715A5A);
-  static const Color error = Colors.redAccent;
-  static const Color bg = Color(0xff37353E);
-  static const Color tile = Color(0xff44444E);
-  static const Color text = Color(0xffD3DAD9);
-  static Color text2 = const Color(0xffD3DAD9).withValues(alpha: 0.4);
-}
+// final colors = Theme.of(context).extension<MyColors>()!;
 
 abstract final class AppFonts {
   static const String w400 = 'w400';
@@ -39,15 +31,28 @@ abstract final class Assets {
   static const String onb3 = 'assets/onb3.jpg';
 }
 
+abstract final class MyIcons {
+  static const IconData add = CupertinoIcons.add;
+  static const IconData delete = CupertinoIcons.delete;
+  static const IconData back = CupertinoIcons.back;
+  static const IconData home = CupertinoIcons.home;
+  static const IconData info = CupertinoIcons.info;
+  static const IconData settings = CupertinoIcons.settings;
+  static const IconData forward = CupertinoIcons.forward;
+  static const IconData restart = CupertinoIcons.restart;
+  static const IconData play = CupertinoIcons.play;
+  static const IconData stop = CupertinoIcons.stop;
+  static const IconData circle = CupertinoIcons.circle;
+  static const IconData move = CupertinoIcons.move;
+  static const IconData shield = CupertinoIcons.shield;
+  static const IconData docText = CupertinoIcons.doc_text;
+  static const IconData questionCircle = CupertinoIcons.question_circle;
+  static const IconData lightbulb = CupertinoIcons.lightbulb;
+  static const IconData checkMark = CupertinoIcons.check_mark;
+  static const IconData chevronRight = CupertinoIcons.chevron_right;
+}
+
 abstract final class Keys {
   static const String onboard = 'onboard';
+  static const String themeID = 'themeID';
 }
-
-abstract final class Identifiers {
-  static const paywall1 = 'paywall_1';
-  static const paywall2 = 'paywall_2';
-}
-
-enum Roles { admin, user }
-
-// final colors = Theme.of(context).extension<MyColors>()!;

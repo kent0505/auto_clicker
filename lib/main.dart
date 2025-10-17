@@ -8,6 +8,8 @@ import 'package:path/path.dart';
 import 'src/core/router.dart';
 import 'src/core/themes.dart';
 import 'src/features/clicker/bloc/clicker_bloc.dart';
+import 'src/features/settings/bloc/settings_bloc.dart';
+import 'src/features/settings/data/settings_repository.dart';
 import 'src/features/site/bloc/site_bloc.dart';
 import 'src/features/site/data/site_repository.dart';
 import 'src/features/home/bloc/home_bloc.dart';
@@ -29,7 +31,7 @@ void main() async {
   // );
 
   final prefs = await SharedPreferences.getInstance();
-  await prefs.clear();
+  // await prefs.clear();
 
   final path = join(await getDatabasesPath(), 'data.db');
   // await deleteDatabase(path);
@@ -48,6 +50,9 @@ void main() async {
         RepositoryProvider<OnboardRepository>(
           create: (context) => OnboardRepositoryImpl(prefs: prefs),
         ),
+        RepositoryProvider<SettingsRepository>(
+          create: (context) => SettingsRepositoryImpl(prefs: prefs),
+        ),
         RepositoryProvider<SiteRepository>(
           create: (context) => SiteRepositoryImpl(db: db),
         ),
@@ -58,15 +63,26 @@ void main() async {
           BlocProvider(create: (context) => VipBloc()),
           BlocProvider(create: (context) => ClickerBloc()),
           BlocProvider(
+            create: (context) => SettingsBloc(
+              repository: context.read<SettingsRepository>(),
+            )..add(GetTheme()),
+          ),
+          BlocProvider(
             create: (context) => SiteBloc(
               repository: context.read<SiteRepository>(),
             )..add(GetSites()),
           ),
         ],
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: theme,
-          routerConfig: routerConfig,
+        child: BlocBuilder<SettingsBloc, SettingsState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              themeMode: state.themeMode,
+              theme: Themes(false).theme,
+              darkTheme: Themes(true).theme,
+              routerConfig: routerConfig,
+            );
+          },
         ),
       ),
     ),

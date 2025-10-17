@@ -63,7 +63,7 @@ class SitesScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(Constants.padding),
       children: [
-        const _Title('Popular'),
+        const _Title('Popular sites'),
         const SizedBox(height: 6),
         Wrap(
           spacing: 8,
@@ -128,10 +128,12 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Text(
       title,
-      style: const TextStyle(
-        color: AppColors.text,
+      style: TextStyle(
+        color: colors.text,
         fontSize: 18,
         fontFamily: AppFonts.w500,
       ),

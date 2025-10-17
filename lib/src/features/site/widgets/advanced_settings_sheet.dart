@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -152,10 +151,12 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Text(
       title,
-      style: const TextStyle(
-        color: AppColors.text,
+      style: TextStyle(
+        color: colors.text,
         fontSize: 16,
         fontFamily: AppFonts.w600,
       ),
@@ -170,13 +171,15 @@ class _AmountText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return SizedBox(
       width: 44,
       child: Text(
         amount,
         textAlign: TextAlign.center,
-        style: const TextStyle(
-          color: AppColors.text,
+        style: TextStyle(
+          color: colors.text,
           fontSize: 16,
           fontFamily: AppFonts.w600,
         ),
@@ -198,6 +201,8 @@ class _ChangeIntervalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Button(
       onPressed: active
           ? () {
@@ -207,8 +212,8 @@ class _ChangeIntervalButton extends StatelessWidget {
             }
           : null,
       child: IconWidget(
-        increment ? CupertinoIcons.forward : CupertinoIcons.back,
-        color: active ? AppColors.text : AppColors.tile,
+        increment ? MyIcons.forward : MyIcons.back,
+        color: active ? colors.text : colors.tile,
       ),
     );
   }
@@ -227,6 +232,8 @@ class _ChangeRepeatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Button(
       onPressed: active
           ? () {
@@ -234,8 +241,8 @@ class _ChangeRepeatButton extends StatelessWidget {
             }
           : null,
       child: IconWidget(
-        increment ? CupertinoIcons.forward : CupertinoIcons.back,
-        color: active ? AppColors.text : AppColors.tile,
+        increment ? MyIcons.forward : MyIcons.back,
+        color: active ? colors.text : colors.tile,
       ),
     );
   }

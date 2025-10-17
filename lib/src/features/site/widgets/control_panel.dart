@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -25,11 +24,13 @@ class ControlPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
         height: 60,
-        color: AppColors.bg,
+        color: colors.bg,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -39,7 +40,7 @@ class ControlPanel extends StatelessWidget {
                   await controller.goBack();
                 }
               },
-              child: const IconWidget(CupertinoIcons.back),
+              child: const IconWidget(MyIcons.back),
             ),
             Button(
               onPressed: () async {
@@ -47,7 +48,7 @@ class ControlPanel extends StatelessWidget {
                   await controller.goForward();
                 }
               },
-              child: const IconWidget(CupertinoIcons.forward),
+              child: const IconWidget(MyIcons.forward),
             ),
             Button(
               onPressed: () {
@@ -58,7 +59,7 @@ class ControlPanel extends StatelessWidget {
                   },
                 );
               },
-              child: const IconWidget(CupertinoIcons.settings),
+              child: const IconWidget(MyIcons.settings),
             ),
             Button(
               onPressed: started
@@ -66,12 +67,12 @@ class ControlPanel extends StatelessWidget {
                   : () {
                       context.read<ClickerBloc>().add(ResetClicks());
                     },
-              child: const IconWidget(CupertinoIcons.restart),
+              child: const IconWidget(MyIcons.restart),
             ),
             BlocBuilder<ClickerBloc, ClickerState>(
               builder: (context, state) {
                 final color =
-                    state.clicks.length < 5 ? AppColors.text : AppColors.tile;
+                    state.clicks.length < 5 ? colors.text : colors.tile;
 
                 return Button(
                   onPressed: state.clicks.length < 5 && !started
@@ -83,7 +84,7 @@ class ControlPanel extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       IconWidget(
-                        CupertinoIcons.circle,
+                        MyIcons.circle,
                         color: color,
                       ),
                       Positioned(
@@ -106,7 +107,7 @@ class ControlPanel extends StatelessWidget {
             Button(
               onPressed: started ? onStop : onStart,
               child: IconWidget(
-                started ? CupertinoIcons.stop : CupertinoIcons.play,
+                started ? MyIcons.stop : MyIcons.play,
               ),
             ),
           ],

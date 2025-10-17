@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants.dart';
@@ -18,6 +18,8 @@ class ClickWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Positioned(
       left: click.x,
       top: click.y,
@@ -35,8 +37,8 @@ class ClickWidget extends StatelessWidget {
         child: Stack(
           children: [
             Icon(
-              state.swipeMode ? CupertinoIcons.move : CupertinoIcons.circle,
-              color: AppColors.error,
+              state.swipeMode ? MyIcons.move : MyIcons.circle,
+              color: colors.error,
               size: click.clicked ? 50 : 60,
             ),
             if (!click.clicked && state.clicks.length > 1)
@@ -45,8 +47,8 @@ class ClickWidget extends StatelessWidget {
                 bottom: state.swipeMode ? 0 : 20,
                 child: Text(
                   (index + 1).toString(),
-                  style: const TextStyle(
-                    color: AppColors.error,
+                  style: TextStyle(
+                    color: colors.error,
                     fontSize: 14,
                     fontFamily: AppFonts.w600,
                   ),

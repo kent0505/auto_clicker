@@ -60,6 +60,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Scaffold(
       body: Center(
         child: ScaleTransition(
@@ -67,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen>
           child: Image.asset(
             Assets.icon,
             height: 200,
-            color: AppColors.text,
+            color: colors.text,
           ),
         ),
       ),

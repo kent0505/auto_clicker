@@ -38,6 +38,8 @@ class DialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Dialog(
       child: SizedBox(
         width: 270,
@@ -52,8 +54,8 @@ class DialogWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: AppColors.text,
+                style: TextStyle(
+                  color: colors.text,
                   fontSize: 18,
                   fontFamily: AppFonts.w600,
                 ),
@@ -65,7 +67,7 @@ class DialogWidget extends StatelessWidget {
                   if (confirm) ...[
                     _Button(
                       title: 'No',
-                      color: AppColors.text,
+                      color: colors.text,
                       fontFamily: AppFonts.w500,
                       onPressed: () {
                         context.pop();
@@ -73,7 +75,7 @@ class DialogWidget extends StatelessWidget {
                     ),
                     _Button(
                       title: 'Yes',
-                      color: AppColors.text,
+                      color: colors.text,
                       fontFamily: AppFonts.w500,
                       onPressed: onPressed ??
                           () {
@@ -83,7 +85,7 @@ class DialogWidget extends StatelessWidget {
                   ] else
                     _Button(
                       title: 'OK',
-                      color: AppColors.text,
+                      color: colors.text,
                       fontFamily: AppFonts.w500,
                       onPressed: onPressed ??
                           () {

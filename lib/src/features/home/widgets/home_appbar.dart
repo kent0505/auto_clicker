@@ -12,6 +12,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
     final top = MediaQuery.of(context).viewPadding.top;
     final state = context.watch<HomeBloc>().state;
 
@@ -27,8 +28,8 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
               2 => 'Settings',
               _ => 'Autoclicker',
             },
-            style: const TextStyle(
-              color: AppColors.text,
+            style: TextStyle(
+              color: colors.text,
               fontSize: 24,
               fontFamily: AppFonts.w600,
             ),

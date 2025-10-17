@@ -15,13 +15,15 @@ class SwitchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Center(
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 400),
         height: 22,
         width: 40,
         decoration: BoxDecoration(
-          color: isActive ? AppColors.accent : AppColors.tile,
+          color: isActive ? colors.accent : colors.tile,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Button(
@@ -38,7 +40,7 @@ class SwitchButton extends StatelessWidget {
                   width: 16,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: isActive ? AppColors.text : AppColors.bg,
+                    color: isActive ? colors.text : colors.bg,
                   ),
                 ),
               ),

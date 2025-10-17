@@ -6,18 +6,20 @@ class IconWidget extends StatelessWidget {
   const IconWidget(
     this.icon, {
     super.key,
-    this.color = AppColors.text,
+    this.color,
   });
 
   final IconData icon;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Icon(
       icon,
       size: 30,
-      color: color,
+      color: color ?? colors.text,
     );
   }
 }

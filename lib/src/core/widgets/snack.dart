@@ -10,6 +10,8 @@ class Snack {
     required String message,
     bool isError = false,
   }) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         elevation: 0,
@@ -28,14 +30,14 @@ class Snack {
               vertical: 8,
             ),
             decoration: BoxDecoration(
-              color: isError ? AppColors.error : AppColors.accent,
+              color: isError ? colors.error : colors.accent,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: colors.text,
                 fontSize: 14,
                 fontFamily: AppFonts.w600,
               ),

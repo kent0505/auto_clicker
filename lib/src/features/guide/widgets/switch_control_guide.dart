@@ -34,10 +34,12 @@ class _Text extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Text(
       text,
-      style: const TextStyle(
-        color: AppColors.text,
+      style: TextStyle(
+        color: colors.text,
         fontSize: 14,
         fontFamily: AppFonts.w500,
         height: 1,

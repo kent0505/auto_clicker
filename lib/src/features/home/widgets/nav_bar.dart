@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/button.dart';
@@ -11,6 +11,8 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -20,7 +22,7 @@ class NavBar extends StatelessWidget {
           horizontal: Constants.padding,
         ).copyWith(bottom: Constants.padding),
         decoration: BoxDecoration(
-          color: AppColors.tile,
+          color: colors.tile,
           borderRadius: BorderRadius.circular(Constants.radius * 2),
         ),
         child: BlocBuilder<HomeBloc, int>(
@@ -32,19 +34,19 @@ class NavBar extends StatelessWidget {
                 _NavBarButton(
                   index: 0,
                   title: 'Autoclicker',
-                  icon: CupertinoIcons.home,
+                  icon: MyIcons.home,
                   active: state == 0,
                 ),
                 _NavBarButton(
                   index: 1,
                   title: 'Guides',
-                  icon: CupertinoIcons.info,
+                  icon: MyIcons.info,
                   active: state == 1,
                 ),
                 _NavBarButton(
                   index: 2,
                   title: 'Settings',
-                  icon: CupertinoIcons.settings,
+                  icon: MyIcons.settings,
                   active: state == 2,
                 ),
               ],
@@ -71,6 +73,8 @@ class _NavBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Expanded(
       child: Button(
         onPressed: active
@@ -83,7 +87,7 @@ class _NavBarButton extends StatelessWidget {
           children: [
             IconWidget(
               icon,
-              color: active ? AppColors.accent : AppColors.text,
+              color: active ? colors.accent : colors.text,
             ),
             const SizedBox(height: 4),
             Text(
@@ -92,7 +96,7 @@ class _NavBarButton extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: active ? AppColors.accent : AppColors.text,
+                color: active ? colors.accent : colors.text,
                 fontSize: 12,
                 fontFamily: AppFonts.w500,
                 height: 1,

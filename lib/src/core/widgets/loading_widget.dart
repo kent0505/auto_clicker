@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
@@ -7,9 +8,11 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    final colors = Theme.of(context).extension<MyColors>()!;
+
+    return Center(
       child: CupertinoActivityIndicator(
-        color: AppColors.text,
+        color: colors.text,
       ),
     );
   }

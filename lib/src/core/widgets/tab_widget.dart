@@ -44,6 +44,8 @@ class _TabWidgetState extends State<TabWidget>
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Column(
       children: [
         Container(
@@ -53,7 +55,7 @@ class _TabWidgetState extends State<TabWidget>
           ).copyWith(bottom: Constants.padding / 2),
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            color: AppColors.tile,
+            color: colors.tile,
             borderRadius: BorderRadius.circular(Constants.radius),
           ),
           child: TabBar(
@@ -62,16 +64,15 @@ class _TabWidgetState extends State<TabWidget>
             overlayColor: WidgetStateProperty.all(Colors.transparent),
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(Constants.radius),
-              color:
-                  _tabController.index == _selectedIndex ? AppColors.bg : null,
+              color: _tabController.index == _selectedIndex ? colors.bg : null,
             ),
-            labelStyle: const TextStyle(
-              color: AppColors.text,
+            labelStyle: TextStyle(
+              color: colors.text,
               fontSize: 16,
               fontFamily: AppFonts.w500,
             ),
             unselectedLabelStyle: TextStyle(
-              color: AppColors.text2,
+              color: colors.text2,
               fontSize: 16,
               fontFamily: AppFonts.w500,
             ),

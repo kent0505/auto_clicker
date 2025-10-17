@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-import '../../../core/constants.dart';
 import '../../../core/utils.dart';
 
 part 'vip_event.dart';
@@ -27,7 +26,7 @@ class VipBloc extends Bloc<VipEvent, VipState> {
       Offerings offerings = await Purchases.getOfferings().timeout(
         const Duration(seconds: 3),
       );
-      final offering = offerings.getOffering(Identifiers.paywall1);
+      final offering = offerings.getOffering('paywall_1');
       logger(offering?.identifier.isNotEmpty ?? '');
 
       emit(state.copyWith(

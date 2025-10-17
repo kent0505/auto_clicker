@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -202,6 +201,8 @@ class _SiteScreenState extends State<SiteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return PopScope(
       onPopInvokedWithResult: (didPop, result) {
         onStop();
@@ -212,16 +213,16 @@ class _SiteScreenState extends State<SiteScreen> {
           right: widget.site.isMy
               ? Button(
                   onPressed: onDelete,
-                  child: const IconWidget(CupertinoIcons.delete),
+                  child: const IconWidget(MyIcons.delete),
                 )
               : null,
         ),
         body: invalid
-            ? const Center(
+            ? Center(
                 child: Text(
                   'Invalid url',
                   style: TextStyle(
-                    color: AppColors.text,
+                    color: colors.text,
                     fontSize: 16,
                     fontFamily: AppFonts.w500,
                   ),

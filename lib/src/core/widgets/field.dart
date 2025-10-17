@@ -37,6 +37,8 @@ class Field extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return TextField(
       controller: controller,
       keyboardType: switch (fieldType) {
@@ -63,8 +65,8 @@ class Field extends StatelessWidget {
       textCapitalization: textCapitalization,
       minLines: fieldType == FieldType.multiline ? 10 : 1,
       maxLines: fieldType == FieldType.multiline ? null : 1,
-      style: const TextStyle(
-        color: AppColors.text,
+      style: TextStyle(
+        color: colors.text,
         fontSize: 16,
         fontFamily: AppFonts.w600,
       ),

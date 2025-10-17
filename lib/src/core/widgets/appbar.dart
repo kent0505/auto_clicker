@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../constants.dart';
@@ -25,6 +25,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
     final statusBarHeight = MediaQuery.of(context).viewPadding.top;
 
     return Container(
@@ -44,7 +45,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                     logger(e);
                   }
                 },
-                child: const IconWidget(CupertinoIcons.back),
+                child: const IconWidget(MyIcons.back),
               ),
               Expanded(
                 child: Center(
@@ -53,8 +54,8 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: AppColors.text,
+                    style: TextStyle(
+                      color: colors.text,
                       fontSize: 18,
                       fontFamily: AppFonts.w700,
                       height: 1,

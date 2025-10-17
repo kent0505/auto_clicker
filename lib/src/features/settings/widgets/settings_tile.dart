@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,24 +22,28 @@ class SettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<MyColors>()!;
+
     return Container(
-      height: 60,
+      height: 56,
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: Constants.padding),
       decoration: BoxDecoration(
-        color: AppColors.tile,
+        color: colors.tile,
         borderRadius: BorderRadius.circular(Constants.radius),
       ),
       child: Button(
         onPressed: onPressed,
         child: Row(
           children: [
-            if (icon != null) IconWidget(icon!),
-            const SizedBox(width: 10),
+            if (icon != null) ...[
+              IconWidget(icon!),
+              const SizedBox(width: 10),
+            ],
             Text(
               title,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: colors.text,
                 fontSize: 16,
                 fontFamily: AppFonts.w500,
               ),
@@ -51,15 +54,15 @@ class SettingsTile extends StatelessWidget {
                     builder: (context, state) {
                       return Text(
                         state.isVIP ? 'VIP' : 'Free',
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: colors.text,
                           fontSize: 16,
                           fontFamily: AppFonts.w500,
                         ),
                       );
                     },
                   )
-                : const IconWidget(CupertinoIcons.chevron_right),
+                : const IconWidget(MyIcons.chevronRight),
           ],
         ),
       ),

@@ -1,4 +1,3 @@
-import 'package:auto_clicker/src/core/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +25,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     Emitter<SettingsState> emit,
   ) {
     final id = _repository.getTheme();
-    logger(id);
     emit(
       state.copyWith(
         themeMode: switch (id) {

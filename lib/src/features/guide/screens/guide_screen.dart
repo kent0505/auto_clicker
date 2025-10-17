@@ -10,7 +10,7 @@ class GuideScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const TabWidget(
-      titles: ['App', 'Switch Control'],
+      titles: ['App', 'Clicker for games'],
       pages: [
         AppGuide(),
         SwitchControlGuide(),

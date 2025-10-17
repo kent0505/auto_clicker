@@ -52,12 +52,6 @@ class SitesScreen extends StatelessWidget {
         asset: Assets.logo6,
         isMy: false,
       ),
-      Site(
-        title: 'Netflix',
-        url: 'https://netflix.com/',
-        asset: Assets.logo7,
-        isMy: false,
-      ),
     ];
 
     return ListView(

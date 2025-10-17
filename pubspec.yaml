@@ -32,6 +32,7 @@ flutter:
   assets:
     - assets/
     - assets/fonts/
+    - assets/guides/
   fonts:
     - family: w400
       fonts:

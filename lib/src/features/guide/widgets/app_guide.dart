@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/widgets/icon_widget.dart';
+import 'guide_title.dart';
 
 class AppGuide extends StatelessWidget {
   const AppGuide({super.key});
@@ -11,7 +12,7 @@ class AppGuide extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(Constants.padding),
       children: const [
-        _Title('Controll panel'),
+        GuideTitle('Controll panel'),
         _IconGuide(
           icon: MyIcons.play,
           title: 'Start click/swipe',
@@ -34,7 +35,7 @@ class AppGuide extends StatelessWidget {
           title: 'Navigate to the next page in history',
         ),
         SizedBox(height: 8),
-        _Title('Advanced settings'),
+        GuideTitle('Advanced settings'),
         _AdvancedGuide(
           title: 'Click Interval (sec)',
           description:
@@ -58,26 +59,6 @@ class AppGuide extends StatelessWidget {
               'Swipe the page in the direction where the indicator is located',
         ),
       ],
-    );
-  }
-}
-
-class _Title extends StatelessWidget {
-  const _Title(this.title);
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).extension<MyColors>()!;
-
-    return Text(
-      title,
-      style: TextStyle(
-        color: colors.text,
-        fontSize: 20,
-        fontFamily: AppFonts.w700,
-      ),
     );
   }
 }

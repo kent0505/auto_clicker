@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/snack.dart';
+import '../../vip/bloc/vip_bloc.dart';
+import '../../vip/screens/vip_screen.dart';
 import '../widgets/settings_tile.dart';
 import 'theme_screen.dart';
 
@@ -42,7 +45,11 @@ class SettingsScreen extends StatelessWidget {
         SettingsTile(
           title: 'Subscription',
           vip: true,
-          onPressed: () {},
+          onPressed: () {
+            if (!context.read<VipBloc>().state.isVIP) {
+              context.push(VipScreen.routePath);
+            }
+          },
         ),
         SettingsTile(
           title: 'Privacy Policy',

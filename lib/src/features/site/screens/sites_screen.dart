@@ -65,7 +65,10 @@ class SitesScreen extends StatelessWidget {
           children: List.generate(
             defaultSites.length,
             (index) {
-              return SiteTile(site: defaultSites[index]);
+              return SiteTile(
+                site: defaultSites[index],
+                vip: true,
+              );
             },
           ),
         ),

@@ -23,6 +23,8 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
+    // context.read<VipBloc>().add(CheckVip());
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),

@@ -12,6 +12,7 @@ class VipBloc extends Bloc<VipEvent, VipState> {
     on<VipEvent>(
       (event, emit) => switch (event) {
         CheckVip() => _checkVip(event, emit),
+        PurchaseVip() => _purchaseVip(event, emit),
       },
     );
   }
@@ -23,20 +24,56 @@ class VipBloc extends Bloc<VipEvent, VipState> {
     emit(state.copyWith(loading: true));
 
     try {
-      Offerings offerings = await Purchases.getOfferings().timeout(
+      final customerInfo = await Purchases.getCustomerInfo().timeout(
         const Duration(seconds: 3),
       );
+
+      final offerings = await Purchases.getOfferings().timeout(
+        const Duration(seconds: 3),
+      );
+
       final offering = offerings.getOffering('paywall_1');
-      logger(offering?.identifier.isNotEmpty ?? '');
 
       emit(state.copyWith(
-        title: offering?.identifier ?? '',
+        isVIP: customerInfo.entitlements.active.isNotEmpty,
         loading: false,
-        isVIP: offering?.identifier.isNotEmpty ?? false,
         offering: offering,
       ));
     } catch (e) {
-      emit(state.copyWith(loading: false));
+      logger(e);
+      emit(state.copyWith(
+        isVIP: false,
+        loading: false,
+        error: 'Something went wrong, try again later',
+      ));
+    }
+  }
+
+  void _purchaseVip(
+    PurchaseVip event,
+    Emitter<VipState> emit,
+  ) async {
+    emit(state.copyWith(loading: true));
+
+    try {
+      await Future.delayed(const Duration(seconds: 2));
+      // заглушка покупки
+      emit(state.copyWith(
+        isVIP: true,
+        loading: false,
+        error: '',
+      ));
+
+      // await Purchases.purchasePackage(event.package);
+
+      // add(CheckVip());
+    } catch (e) {
+      logger(e);
+      emit(state.copyWith(
+        isVIP: false,
+        loading: false,
+        error: 'Something went wrong, try again later',
+      ));
     }
   }
 }

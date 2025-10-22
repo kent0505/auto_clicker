@@ -5,7 +5,7 @@ import 'constants.dart';
 class Themes {
   final bool isDark;
 
-  Themes(this.isDark);
+  Themes({required this.isDark});
 
   MyColors get colors {
     return isDark ? MyColors.dark() : MyColors.light();

@@ -4,3 +4,9 @@ part of 'vip_bloc.dart';
 sealed class VipEvent {}
 
 final class CheckVip extends VipEvent {}
+
+final class PurchaseVip extends VipEvent {
+  PurchaseVip({required this.package});
+
+  final Package package;
+}

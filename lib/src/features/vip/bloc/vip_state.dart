@@ -5,25 +5,25 @@ class VipState {
     this.isVIP = false,
     this.loading = false,
     this.offering,
-    this.title = '',
+    this.error = '',
   });
 
   final bool isVIP;
   final bool loading;
   final Offering? offering;
-  final String title;
+  final String error;
 
   VipState copyWith({
     bool? isVIP,
     bool? loading,
     Offering? offering,
-    String? title,
+    String? error,
   }) {
     return VipState(
       isVIP: isVIP ?? this.isVIP,
       loading: loading ?? this.loading,
       offering: offering ?? this.offering,
-      title: title ?? this.title,
+      error: error ?? this.error,
     );
   }
 }

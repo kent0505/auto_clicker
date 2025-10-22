@@ -7,6 +7,7 @@ import '../features/site/models/site.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/onboard/screens/onboard_screen.dart';
 import '../features/splash/screens/splash_screen.dart';
+import '../features/vip/screens/vip_screen.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/',
@@ -40,6 +41,12 @@ final routerConfig = GoRouter(
     GoRoute(
       path: ThemeScreen.routePath,
       builder: (context, state) => const ThemeScreen(),
+    ),
+
+    // vip
+    GoRoute(
+      path: VipScreen.routePath,
+      builder: (context, state) => const VipScreen(),
     ),
   ],
 );

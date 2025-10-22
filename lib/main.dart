@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 import 'src/core/router.dart';
 import 'src/core/themes.dart';
+import 'src/core/utils.dart';
 import 'src/features/clicker/bloc/clicker_bloc.dart';
 import 'src/features/settings/bloc/settings_bloc.dart';
 import 'src/features/settings/data/settings_repository.dart';
@@ -26,12 +28,14 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  // await Purchases.configure(
-  //   PurchasesConfiguration(''),
-  // );
+  await Purchases.configure(
+    PurchasesConfiguration(
+      isIOS() ? 'ios_api_key' : 'android api key',
+    ),
+  );
 
   final prefs = await SharedPreferences.getInstance();
-  // await prefs.clear();
+  await prefs.clear();
 
   final path = join(await getDatabasesPath(), 'data.db');
   // await deleteDatabase(path);
@@ -60,7 +64,7 @@ void main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => HomeBloc()),
-          BlocProvider(create: (context) => VipBloc()),
+          BlocProvider(create: (context) => VipBloc()..add(CheckVip())),
           BlocProvider(create: (context) => ClickerBloc()),
           BlocProvider(
             create: (context) => SettingsBloc(
@@ -78,8 +82,8 @@ void main() async {
             return MaterialApp.router(
               debugShowCheckedModeBanner: false,
               themeMode: state.themeMode,
-              theme: Themes(false).theme,
-              darkTheme: Themes(true).theme,
+              theme: Themes(isDark: false).theme,
+              darkTheme: Themes(isDark: true).theme,
               routerConfig: routerConfig,
             );
           },

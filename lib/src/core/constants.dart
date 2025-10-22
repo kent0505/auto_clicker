@@ -15,6 +15,7 @@ abstract final class Constants {
   static const double navBarHeight = 62;
   static const double padding = 16;
   static const double radius = 10;
+  static const int milliseconds = 400;
 }
 
 abstract final class Assets {
@@ -54,6 +55,7 @@ abstract final class MyIcons {
   static const IconData add = CupertinoIcons.add;
   static const IconData delete = CupertinoIcons.delete;
   static const IconData back = CupertinoIcons.back;
+  static const IconData close = CupertinoIcons.xmark;
   static const IconData home = CupertinoIcons.home;
   static const IconData info = CupertinoIcons.info;
   static const IconData settings = CupertinoIcons.settings;

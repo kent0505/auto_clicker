@@ -1,4 +1,5 @@
 import 'dart:developer' as developer;
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -32,4 +33,8 @@ Widget frameBuilder(
     curve: Curves.easeInOut,
     child: child,
   );
+}
+
+bool isIOS() {
+  return Platform.isIOS;
 }

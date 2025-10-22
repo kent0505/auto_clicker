@@ -29,7 +29,7 @@ class MainButton extends StatelessWidget {
     final colors = Theme.of(context).extension<MyColors>()!;
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: Constants.milliseconds),
       height: 56,
       width: width,
       margin: EdgeInsets.symmetric(horizontal: horizontal),

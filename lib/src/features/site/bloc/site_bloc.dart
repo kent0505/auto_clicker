@@ -29,7 +29,7 @@ class SiteBloc extends Bloc<SiteEvent, SiteState> {
   ) async {
     try {
       final sites = await _repository.getSites();
-      logger(sites.length);
+
       emit(SitesLoaded(sites: sites));
     } catch (e) {
       logger(e);

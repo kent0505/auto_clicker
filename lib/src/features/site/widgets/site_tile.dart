@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants.dart';
@@ -6,11 +7,18 @@ import '../../../core/utils.dart';
 import '../../../core/widgets/button.dart';
 import '../../site/screens/site_screen.dart';
 import '../../site/models/site.dart';
+import '../../vip/bloc/vip_bloc.dart';
+import '../../vip/screens/vip_screen.dart';
 
 class SiteTile extends StatelessWidget {
-  const SiteTile({super.key, required this.site});
+  const SiteTile({
+    super.key,
+    required this.site,
+    this.vip = false,
+  });
 
   final Site site;
+  final bool vip;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +34,13 @@ class SiteTile extends StatelessWidget {
       ),
       child: Button(
         onPressed: () {
+          if (vip) {
+            if (!context.read<VipBloc>().state.isVIP) {
+              context.push(VipScreen.routePath);
+              return;
+            }
+          }
+
           context.push(
             SiteScreen.routePath,
             extra: site,

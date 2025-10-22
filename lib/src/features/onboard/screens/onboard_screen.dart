@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/constants.dart';
+import '../../../core/utils.dart';
 import '../../../core/widgets/main_button.dart';
 import '../../home/screens/home_screen.dart';
 import '../data/onboard_repository.dart';
@@ -67,19 +68,28 @@ class _OnboardScreenState extends State<OnboardScreen> {
               Container(
                 color: const Color(0xfffff9ee),
                 child: Center(
-                  child: Image.asset(Assets.onb1),
+                  child: Image.asset(
+                    Assets.onb1,
+                    frameBuilder: frameBuilder,
+                  ),
                 ),
               ),
               Container(
                 color: Colors.white,
                 child: Center(
-                  child: Image.asset(Assets.onb2),
+                  child: Image.asset(
+                    Assets.onb2,
+                    frameBuilder: frameBuilder,
+                  ),
                 ),
               ),
               Container(
                 color: const Color(0xfffafafb),
                 child: Center(
-                  child: Image.asset(Assets.onb3),
+                  child: Image.asset(
+                    Assets.onb3,
+                    frameBuilder: frameBuilder,
+                  ),
                 ),
               ),
             ],

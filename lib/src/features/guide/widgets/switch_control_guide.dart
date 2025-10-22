@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants.dart';
+import '../../../core/utils.dart';
 import 'guide_title.dart';
 
 class SwitchControlGuide extends StatelessWidget {
@@ -71,7 +72,10 @@ class _Image extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsGeometry.symmetric(vertical: 8),
-      child: Image.asset(asset),
+      child: Image.asset(
+        asset,
+        frameBuilder: frameBuilder,
+      ),
     );
   }
 }

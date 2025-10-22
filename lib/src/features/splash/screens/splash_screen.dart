@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants.dart';
+import '../../../core/utils.dart';
 import '../../home/screens/home_screen.dart';
 import '../../onboard/data/onboard_repository.dart';
 import '../../onboard/screens/onboard_screen.dart';
@@ -72,6 +73,7 @@ class _SplashScreenState extends State<SplashScreen>
             Assets.icon,
             height: 200,
             color: colors.text,
+            frameBuilder: frameBuilder,
           ),
         ),
       ),

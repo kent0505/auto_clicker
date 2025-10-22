@@ -110,6 +110,7 @@ class _VipScreenState extends State<VipScreen> {
                       Assets.icon,
                       height: 100,
                       color: colors.text,
+                      frameBuilder: frameBuilder,
                     ),
                     const SizedBox(height: Constants.padding),
                     Text(

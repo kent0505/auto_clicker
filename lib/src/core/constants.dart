@@ -27,9 +27,10 @@ abstract final class Assets {
   static const String logo5 = 'assets/logo5.png';
   static const String logo6 = 'assets/logo6.png';
   static const String logo7 = 'assets/logo7.png';
-  static const String onb1 = 'assets/onb1.jpg';
-  static const String onb2 = 'assets/onb2.jpg';
-  static const String onb3 = 'assets/onb3.jpg';
+  static const String onb1 = 'assets/onb1.png';
+  static const String onb2 = 'assets/onb2.png';
+  static const String onb3 = 'assets/onb3.png';
+
   static const String guide1 = 'assets/guides/guide1.jpg';
   static const String guide2 = 'assets/guides/guide2.jpg';
   static const String guide3 = 'assets/guides/guide3.jpg';

@@ -57,7 +57,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
     final colors = Theme.of(context).extension<MyColors>()!;
 
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -65,20 +64,29 @@ class _OnboardScreenState extends State<OnboardScreen> {
             controller: pageController,
             onPageChanged: onPageChanged,
             children: [
-              Image.asset(Assets.onb1),
-              Image.asset(Assets.onb2),
-              RotatedBox(
-                quarterTurns: 2,
-                child: Image.asset(
-                  Assets.icon,
-                  color: colors.accent,
+              Container(
+                color: const Color(0xfffff9ee),
+                child: Center(
+                  child: Image.asset(Assets.onb1),
+                ),
+              ),
+              Container(
+                color: Colors.white,
+                child: Center(
+                  child: Image.asset(Assets.onb2),
+                ),
+              ),
+              Container(
+                color: const Color(0xfffafafb),
+                child: Center(
+                  child: Image.asset(Assets.onb3),
                 ),
               ),
             ],
           ),
           Container(
             height: 260,
-            color: colors.bg,
+            color: colors.tile,
             child: Column(
               children: [
                 const SizedBox(height: 10),
@@ -127,7 +135,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: colors.text,
+                      color: colors.text2,
                       fontSize: 16,
                       fontFamily: AppFonts.w500,
                     ),

@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+import 'src/core/constants.dart';
 import 'src/core/router.dart';
 import 'src/core/themes.dart';
 import 'src/core/utils.dart';
@@ -35,7 +36,7 @@ void main() async {
   );
 
   final prefs = await SharedPreferences.getInstance();
-  await prefs.clear();
+  await prefs.remove(Keys.onboard);
 
   final path = join(await getDatabasesPath(), 'data.db');
   // await deleteDatabase(path);

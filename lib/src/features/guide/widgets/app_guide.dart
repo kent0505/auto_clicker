@@ -18,7 +18,8 @@ class AppGuide extends StatelessWidget {
           title: 'Start click/swipe',
         ),
         _IconGuide(
-          icon: MyIcons.circle,
+          icon: MyIcons.hand,
+          quarterTurns: 1,
           title:
               'Add an additional click area, a maximum of 5 can be added, each area is triggered in turn. To remove it, just click on it',
         ),
@@ -120,10 +121,12 @@ class _IconGuide extends StatelessWidget {
   const _IconGuide({
     required this.icon,
     required this.title,
+    this.quarterTurns = 0,
   });
 
   final IconData icon;
   final String title;
+  final int quarterTurns;
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +134,10 @@ class _IconGuide extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 4),
       child: Row(
         children: [
-          IconWidget(icon),
+          RotatedBox(
+            quarterTurns: quarterTurns,
+            child: IconWidget(icon),
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: _Description(title),

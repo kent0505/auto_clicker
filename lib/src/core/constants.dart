@@ -64,7 +64,7 @@ abstract final class MyIcons {
   static const IconData restart = CupertinoIcons.restart;
   static const IconData play = CupertinoIcons.play;
   static const IconData stop = CupertinoIcons.stop;
-  static const IconData circle = CupertinoIcons.circle;
+  static const IconData hand = CupertinoIcons.hand_point_left;
   static const IconData move = CupertinoIcons.move;
   static const IconData shield = CupertinoIcons.shield;
   static const IconData docText = CupertinoIcons.doc_text;

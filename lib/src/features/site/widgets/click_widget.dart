@@ -36,15 +36,18 @@ class ClickWidget extends StatelessWidget {
         },
         child: Stack(
           children: [
-            Icon(
-              state.swipeMode ? MyIcons.move : MyIcons.circle,
-              color: colors.error,
-              size: click.clicked ? 50 : 60,
+            RotatedBox(
+              quarterTurns: 1,
+              child: Icon(
+                state.swipeMode ? MyIcons.move : MyIcons.hand,
+                color: colors.error,
+                size: click.clicked ? 50 : 60,
+              ),
             ),
             if (!click.clicked && state.clicks.length > 1)
               Positioned(
-                right: state.swipeMode ? 0 : 26,
-                bottom: state.swipeMode ? 0 : 20,
+                right: state.swipeMode ? 0 : 30,
+                bottom: state.swipeMode ? 0 : 10,
                 child: Text(
                   (index + 1).toString(),
                   style: TextStyle(

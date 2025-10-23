@@ -83,13 +83,16 @@ class ControlPanel extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      IconWidget(
-                        MyIcons.circle,
-                        color: color,
+                      RotatedBox(
+                        quarterTurns: 1,
+                        child: IconWidget(
+                          MyIcons.hand,
+                          color: color,
+                        ),
                       ),
                       Positioned(
-                        top: 8,
-                        left: 11,
+                        top: 0,
+                        left: 0,
                         child: Text(
                           (5 - state.clicks.length).toString(),
                           style: TextStyle(

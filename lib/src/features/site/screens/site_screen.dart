@@ -37,7 +37,7 @@ class _SiteScreenState extends State<SiteScreen> {
 
   Future<void> runJS(Click click, {bool swipeMode = false}) async {
     final x = click.x + 30;
-    final y = click.y + 30;
+    final y = click.y;
 
     final js = swipeMode
         ? '''

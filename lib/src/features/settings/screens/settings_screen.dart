@@ -46,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
           title: 'Subscription',
           vip: true,
           onPressed: () {
-            if (!context.read<VipBloc>().state.isVIP) {
+            if (!context.read<VipBloc>().state.isVip) {
               context.push(VipScreen.routePath);
             }
           },

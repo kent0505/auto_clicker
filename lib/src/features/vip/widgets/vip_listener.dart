@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../bloc/vip_bloc.dart';
+import '../screens/vip_screen.dart';
 
 class VipListener extends StatelessWidget {
   const VipListener({super.key, required this.child});
@@ -16,10 +18,10 @@ class VipListener extends StatelessWidget {
           const Duration(seconds: 1),
           () {
             if (context.mounted &&
-                !state.isVIP &&
+                !state.isVip &&
                 !state.loading &&
                 state.init) {
-              // context.push(VipScreen.routePath);
+              context.push(VipScreen.routePath);
             }
           },
         );

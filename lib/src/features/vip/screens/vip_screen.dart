@@ -1,3 +1,4 @@
+import 'package:apphud/models/apphud_models/apphud_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import '../../../core/widgets/button.dart';
 import '../../../core/widgets/icon_widget.dart';
 import '../../../core/widgets/main_button.dart';
 import '../bloc/vip_bloc.dart';
+import '../widgets/vip_tile.dart';
 
 class VipScreen extends StatefulWidget {
   const VipScreen({super.key});
@@ -19,16 +21,16 @@ class VipScreen extends StatefulWidget {
 }
 
 class _VipScreenState extends State<VipScreen> {
-  // Package? selectedPackage;
+  ApphudProduct? selectedProduct;
 
   void onGetStarted() {
-    // context.read<VipBloc>().add(PurchaseVip(package: selectedPackage!));
+    context.read<VipBloc>().add(PurchaseVip(product: selectedProduct!));
   }
 
-  void onSelect() {
-    // setState(() {
-    //   selectedPackage = value == selectedPackage ? null : value;
-    // });
+  void onSelect(ApphudProduct value) {
+    setState(() {
+      selectedProduct = value == selectedProduct ? null : value;
+    });
   }
 
   @override
@@ -68,17 +70,17 @@ class _VipScreenState extends State<VipScreen> {
                       ),
                     ),
                     const Spacer(),
-                    // ...List.generate(
-                    //   mockPackages.length,
-                    //   (index) {
-                    //     return VipTile(
-                    //       package: mockPackages[index],
-                    //       current: selectedPackage,
-                    //       loading: state.loading,
-                    //       onPressed: onSelect,
-                    //     );
-                    //   },
-                    // ),
+                    ...List.generate(
+                      state.products.length,
+                      (index) {
+                        return VipTile(
+                          product: state.products[index],
+                          current: selectedProduct,
+                          loading: state.loading,
+                          onPressed: onSelect,
+                        );
+                      },
+                    ),
                     MainButton(
                       title: 'Get started',
                       loading: state.loading,

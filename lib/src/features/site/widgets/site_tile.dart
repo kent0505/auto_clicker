@@ -35,7 +35,7 @@ class SiteTile extends StatelessWidget {
       child: Button(
         onPressed: () {
           if (vip) {
-            if (!context.read<VipBloc>().state.isVIP) {
+            if (!context.read<VipBloc>().state.isVip) {
               context.push(VipScreen.routePath);
               return;
             }

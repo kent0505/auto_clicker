@@ -53,7 +53,7 @@ class SettingsTile extends StatelessWidget {
                 ? BlocBuilder<VipBloc, VipState>(
                     builder: (context, state) {
                       return Text(
-                        state.isVIP ? 'VIP' : 'Free',
+                        state.isVip ? 'VIP' : 'Free',
                         style: TextStyle(
                           color: colors.text,
                           fontSize: 16,

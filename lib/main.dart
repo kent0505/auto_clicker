@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:apphud/apphud.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 import 'src/core/constants.dart';
 import 'src/core/router.dart';
 import 'src/core/themes.dart';
-import 'src/core/utils.dart';
 import 'src/features/clicker/bloc/clicker_bloc.dart';
 import 'src/features/settings/bloc/settings_bloc.dart';
 import 'src/features/settings/data/settings_repository.dart';
@@ -29,10 +28,9 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  await Purchases.configure(
-    PurchasesConfiguration(
-      isIOS() ? 'ios_api_key' : 'android api key',
-    ),
+  await Apphud.start(
+    apiKey: 'app_v2szQa16y1ZtrUYFYA3gW3xoazCLEv',
+    observerMode: false,
   );
 
   final prefs = await SharedPreferences.getInstance();
@@ -65,8 +63,10 @@ void main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => HomeBloc()),
-          BlocProvider(create: (context) => VipBloc()..add(CheckVip())),
           BlocProvider(create: (context) => ClickerBloc()),
+          BlocProvider(
+            create: (context) => VipBloc()..add(CheckVip()),
+          ),
           BlocProvider(
             create: (context) => SettingsBloc(
               repository: context.read<SettingsRepository>(),

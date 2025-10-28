@@ -6,7 +6,7 @@ sealed class VipEvent {}
 final class CheckVip extends VipEvent {}
 
 final class PurchaseVip extends VipEvent {
-  PurchaseVip({required this.package});
+  PurchaseVip({required this.product});
 
-  final Package package;
+  final ApphudProduct product;
 }

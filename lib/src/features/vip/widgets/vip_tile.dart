@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
+// import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/widgets/button.dart';
@@ -7,22 +7,22 @@ import '../../../core/widgets/button.dart';
 class VipTile extends StatelessWidget {
   const VipTile({
     super.key,
-    required this.package,
-    required this.current,
+    // required this.package,
+    // required this.current,
     required this.loading,
-    required this.onPressed,
+    // required this.onPressed,
   });
 
-  final Package package;
-  final Package? current;
+  // final Package package;
+  // final Package? current;
   final bool loading;
-  final void Function(Package) onPressed;
+  // final void Function(Package) onPressed;
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<MyColors>()!;
-    final product = package.storeProduct;
-    final active = current == package;
+    // final product = package.storeProduct;
+    // final active = current == package;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: Constants.milliseconds),
@@ -33,14 +33,14 @@ class VipTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(Constants.radius),
         border: Border.all(
           width: 2,
-          color: active ? colors.accent : colors.tile,
+          // color: active ? colors.accent : colors.tile,
         ),
       ),
       child: Button(
         onPressed: loading
             ? null
             : () {
-                onPressed(package);
+                // onPressed(package);
               },
         child: Row(
           children: [
@@ -51,7 +51,7 @@ class VipTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    product.title,
+                    'product.title',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -62,7 +62,7 @@ class VipTile extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    product.description,
+                    'product.description',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -76,7 +76,7 @@ class VipTile extends StatelessWidget {
             ),
             const SizedBox(width: Constants.padding),
             Text(
-              product.priceString,
+              'product.priceString',
               style: TextStyle(
                 color: colors.text,
                 fontSize: 20,

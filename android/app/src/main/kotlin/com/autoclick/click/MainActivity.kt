@@ -1,4 +1,4 @@
-package com.example.auto_clicker
+package com.autoclick.click
 
 import io.flutter.embedding.android.FlutterActivity
 

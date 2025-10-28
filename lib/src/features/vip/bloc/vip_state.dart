@@ -4,26 +4,22 @@ class VipState {
   VipState({
     this.isVIP = false,
     this.loading = false,
-    this.offering,
-    this.error = '',
+    this.init = true,
   });
 
   final bool isVIP;
   final bool loading;
-  final Offering? offering;
-  final String error;
+  final bool init;
 
   VipState copyWith({
     bool? isVIP,
     bool? loading,
-    Offering? offering,
-    String? error,
+    bool? init,
   }) {
     return VipState(
       isVIP: isVIP ?? this.isVIP,
       loading: loading ?? this.loading,
-      offering: offering ?? this.offering,
-      error: error ?? this.error,
+      init: init ?? this.init,
     );
   }
 }
